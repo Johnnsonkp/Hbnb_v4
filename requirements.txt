@@ -8,3 +8,6 @@ pymysql
 cryptography
 flask-jwt-extended
 flask-cors
+python-dotenv
+cloudinary
+requests

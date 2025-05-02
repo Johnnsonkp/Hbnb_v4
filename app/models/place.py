@@ -8,19 +8,6 @@ from app.models.associations import place_amenity
 class Place(db.Model):
     __tablename__ = "places"
 
-    # id = db.Column(db.String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
-    # title = db.Column(db.String(100), nullable=False)
-    # description = db.Column(db.String(300), nullable=False)
-    # price = db.Column(db.Float, nullable=False)
-    # latitude = db.Column(db.Float, nullable=False)
-    # longitude = db.Column(db.Float, nullable=False)
-    # owner_id = db.Column(db.String(36), db.ForeignKey("users.id"), nullable=False)
-    # created_at = db.Column(db.DateTime, default=datetime.now())
-    # updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now())
-    # owner_r = db.relationship("User", back_populates="properties_r")
-    # reviews_r = db.relationship("Review", back_populates="place_r", lazy=True, cascade="all, delete-orphan")
-    # amenities_r = db.relationship("Amenity", secondary=place_amenity, lazy='subquery', back_populates="place_r")
-
     id = db.Column(db.String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(300), nullable=False)
