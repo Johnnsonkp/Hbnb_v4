@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Welcome to our landing page, where we introduce our product/service">
+    <title>Events local</title>
+    <link rel="stylesheet" href="static/css/landing-page.css">
+    <link rel="icon" href="images/favicon.ico">
+</head>
+  <body>
+    <div class="page-content">
+      <!-- <div class="banner-overlay"></div>
+      <img class="banner-img" src="/static/images/landing-skyrise.jpg"> -->
+      <!-- <img class="banner-img" src="/static/images/radial-circle.svg"> -->
+      <!-- <div class="landing-page"> -->
+        <!-- Top Nav -->
+        <section class="top-nav">
+          <div class="tab-inner">
+            <button class="btn-switch active"><a href="#">Home</a></button>
+            <button class="btn-switch">
+              <a href="/events">Events</a></button>
+          </div>
+        </section>
+
+        <!-- Header Section -->
+        <header class="header-container">
+          <nav class="nav-container">
+            <div class="logo">
+              <a class="hover-chip" href="/home">
+                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="chip-icon" viewBox="0 0 16 16">
+                  <path
+                    d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z">
+                  </path>
+                </svg> -->
+                <svg class="radial-pin" fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="50" height="50">
+                    <path class=""
+                        d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zm11.31-1.41a7 7 0 1 0-9.9 0L12 19.9l4.95-4.95zM12 14a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-2a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+                </svg>
+                <span class="chip-label">Hbnb</span>
+              </a>
+            </div>
+              <div class="search-box">
+                <div class="search-box-inner">
+                  <input type="text" placeholder="Search..." class="input-field" />
+                  <select class="input-field">
+                    <option value="">Category</option>
+                    <option value="house">House</option>
+                    <option value="apartment">Apartment</option>
+                    <option value="condo">Condo</option>
+                  </select>
+                  <input type="number" placeholder="Min Price" class="input-field" />
+                  <input type="number" placeholder="Max Price" class="input-field" />
+                  <button class="search-button">
+                  </button>
+                </div>
+              </div>
+
+              <ul class="nav-links">
+                  <li><a href="/listings">Listings</a></li>
+                  <li class="card">
+                    <div class="dropdown-container">
+                      <div class="group">
+                        <button type="button" class="dropdown-button">
+                          <span class="dropdown-icon"></span>
+                        </button>
+                    
+                        <div class="dropdown-menu">
+                          <div class="dropdown-options">
+                            <button id="user-auth-details"></button>
+                            <a href="/auth/sign-up" class="dropdown-option">
+                              <span class="item">
+                                <img class="login-image" src="/static/images/sign-up-48.png" />
+                                Sign up
+                              </span>
+                            </a>
+                            
+                            <a href="/auth/login" class="dropdown-option">
+                              <span class="item">
+                                <img class="login-image" src="/static/images/login-50.png" />
+                                Log In
+                              </span>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+              </ul>
+          </nav>
+        </header>
+        
+        <div class="container">
+          <div class="rotating bg-circularLight">
+            <div class="radial-point"></div>
+          </div>
+
+          <div class="inner-wrapper">
+            <div class="blur-background"></div>
+            <div class="text-center">
+              <h1 class="main-heading">
+                <span class="block"><span class="mb-1">Discover unforgettable</span></span>
+                  <span class="gradient-text">vacation rentals</span>
+                  <div class="subheading">
+                    Across the globe
+                    <span class="ai-tools">
+                      <svg aria-hidden="true" viewBox="0 0 418 42" class="svg-highlight">
+                        <path
+                          d="M203.371.916c-26.013-2.078-76.686 1.963-124.73 9.946L67.3 12.749C35.421 18.062 18.2 21.766 6.004 25.934 1.244 27.561.828 27.778.874 28.61c.07 1.214.828 1.121 9.595-1.176 9.072-2.377 17.15-3.92 39.246-7.496C123.565 7.986 157.869 4.492 195.942 5.046c7.461.108 19.25 1.696 19.17 2.582-.107 1.183-7.874 4.31-25.75 10.366-21.992 7.45-35.43 12.534-36.701 13.884-2.173 2.308-.202 4.407 4.442 4.734 2.654.187 3.263.157 15.593-.78 35.401-2.686 57.944-3.488 88.365-3.143 46.327.526 75.721 2.23 130.788 7.584 19.787 1.924 20.814 1.98 24.557 1.332l.066-.011c1.201-.203 1.53-1.825.399-2.335-2.911-1.31-4.893-1.604-22.048-3.261-57.509-5.556-87.871-7.36-132.059-7.842-23.239-.254-33.617-.116-50.627.674-11.629.54-42.371 2.494-46.696 2.967-2.359.259 8.133-3.625 26.504-9.81 23.239-7.825 27.934-10.149 28.304-14.005.417-4.348-3.529-6-16.878-7.066Z">
+                        </path>
+                      </svg>
+                      <span class="relative">with HBnB.</span>
+                    </span>
+                  </div>
+
+                  <p class="description">
+                    HBnB connects you with unique homes, cabins, and apartments in over 190 countries. Book your next adventure today and experience travel like never before.
+                  </p>
+
+                  <div class="cta-container">
+                    <a href="/listings" class="cta-button">View all listings 🏡</a>
+                  </div>
+
+            </div>
+          </div>
+        </div>
+
+      <div class="sponsor-section">
+        <div class="sponsor-container"></div>
+      </div>
+
+      <main class="sponsor-section">
+        <h1>Cities that might interest you</h1>
+        <div id="cities"></div>
+      </main>
+
+    </div>
+      <script>
+        handleSwitch()
+        loadSVG()
+        // loadRadialPoints()
+        trustIconFilter()
+        handleUserAuth()
+
+        window.addEventListener('beforeunload', () => {
+          document.body.classList.add('fade-out');
+        });
+
+
+
+      async function getUserInfo(){
+        try {
+          const response = await fetch('http://127.0.0.1:5000/api/v1/users/current_user', {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+            },
+            mode: 'cors'
+          });
+          const data = await response.json();
+          return data;
+        } catch (error) {
+          console.error('Failed to fetch listings:', error);
+        }
+      }
+
+      function handleUserAuth(){
+        console.log("handleUserAuth")
+        const dropDown = document.querySelector('.dropdown-button');
+        const userAuthDetails = document.getElementById("user-auth-details");
+        const userIsAuth = getJWTToken()
+        
+        if(userIsAuth){
+          let div = document.createElement('div')
+
+          getUserInfo()
+            .then((data) => {
+              if(data.first_name){
+                dropDown.classList.add('auth-badge')
+                dropDown.innerHTML = `<div class="inner-badge-div">${data.first_name[0]}</div>`
+
+                userAuthDetails.innerHTML = `<div class="user-auth-dropdown">
+                  <div class="inner-badge">${data.first_name[0]}</div>
+                  ${data.first_name} ${data.last_name} 
+                  ${data.email}
+                </div>`
+
+              }else{
+                console.log("isUserAuth", data.msg)
+
+                fetch('/static/svg/unAuthorisedUser.js')
+                  .then(res => res.text())
+                  .then(res => {
+                    const svgMatch = res.match(/<svg[\s\S]*?<\/svg>/);
+                    const matches = [...res.matchAll(/<svg[\s\S]*?<\/svg>/g)];
+                    dropDown.innerHTML = svgMatch;
+                });
+              }
+          })
+        }
+        else {
+          fetch('/static/svg/unAuthorisedUser.js')
+            .then(res => res.text())
+            .then(res => {
+              const svgMatch = res.match(/<svg[\s\S]*?<\/svg>/);
+              const matches = [...res.matchAll(/<svg[\s\S]*?<\/svg>/g)];
+              dropDown[0].innerHTML = svgMatch;
+            });
+        }
+      }
+
+      function getJWTToken() {
+        const jwtToken = localStorage.getItem('local_events_jwt')
+
+        if (jwtToken) {
+          return jwtToken
+        } else {
+          console.warn("No token provided to save.");
+        }
+      }
+
+
+        function getCities(arr){
+          let cities_div = document.getElementById("cities")
+
+          if(cities_div){
+            for(let i = 0; i < 6; i ++){
+              cities_div.innerHTML += `<div> ${arr[i]}</div>`
+            }
+          }
+        }
+
+        async function loadRadialPoints(res){
+          let radialCircle = document.getElementsByClassName('bg-circularLight');
+          const centerX = window.innerWidth / 2;
+          const centerY = window.innerHeight / 2;
+
+          for (let i = 0; i <= res.length; i++) {
+            let div = document.createElement('div');
+            div.classList.add("radial-pin");
+            div.innerHTML = `<svg class="" fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="25" height="25">
+                <path class=""
+                    d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zm11.31-1.41a7 7 0 1 0-9.9 0L12 19.9l4.95-4.95zM12 14a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-2a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+            </svg>`
+
+            const angle = (i / res.length) * Math.PI * 2;
+            const radius = 200 + Math.random() * 400;
+            const x = centerX + Math.cos(angle) * radius;
+            const y = centerY + Math.sin(angle) * radius;
+
+            div.style.position = "absolute"; 
+            div.classList.add("reverse-rotating")
+            div.style.top = `${y}px`;
+            div.style.left = `${x}px`;
+            radialCircle[0].appendChild(div);
+          }
+        }
+
+        function trustIconFilter(){
+          const filterContainer = document.getElementsByClassName('sponsor-container');
+          let a = document.createElement('a');
+          if (filterContainer){
+            fetch('http://127.0.0.1:5000/api/v1/places/all')
+              .then(res => res.json())
+              .then(res => {
+                let arr = []
+                loadRadialPoints(res)
+                res.filter((listing_1) => !arr.includes(listing_1.type) && arr.push(listing_1.type))
+
+                for(let i = 0; i < arr.length; i++){
+                  let a = document.createElement('a');
+                  a.classList.add("sponsor-link")
+                  // a.classList.add("radial-point");
+                  a.innerHTML = arr[i]
+                  filterContainer[0].appendChild(a);
+                }
+                getCities(arr)
+            });
+          }
+        }
+
+        function loadSVG(){
+          const searchIcon = document.getElementsByClassName('search-button');
+          const dropDown = document.getElementsByClassName('dropdown-button');
+
+          if (searchIcon){
+            fetch('/static/svg/searchIcon.js')
+              .then(res => res.text())
+              .then(res => {
+                const svgMatch = res.match(/<svg[\s\S]*?<\/svg>/);
+                const matches = [...res.matchAll(/<svg[\s\S]*?<\/svg>/g)];
+                searchIcon[0].innerHTML = svgMatch;
+              });
+          }
+          // if (dropDown){
+          //   fetch('/static/svg/userIcon.js')
+          //     .then(res => res.text())
+          //     .then(res => {
+          //       const svgMatch = res.match(/<svg[\s\S]*?<\/svg>/);
+          //       const matches = [...res.matchAll(/<svg[\s\S]*?<\/svg>/g)];
+          //       dropDown[0].innerHTML = svgMatch;
+          //     });
+          // }
+          
+        }
+
+        async function handleSwitch(){
+          const slideBtn = await document.querySelectorAll(".btn-switch")
+          if (slideBtn){
+            slideBtn.forEach((btn, index) => {
+              btn.addEventListener('click', () => {
+                slideBtn[0].classList.remove('active')
+                slideBtn[1].classList.remove('active')
+
+                if(slideBtn[index].textContent == btn.textContent){
+                  btn.classList.toggle("active")
+                }
+              })
+            })
+          }
+        }
+        
+      </script>
+
+  </body>
+</html>

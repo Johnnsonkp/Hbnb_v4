@@ -1,0 +1,85 @@
+/* General container styling */
+.listing-table-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Overflow container for horizontal scrolling */
+.overflow-container {
+  overflow-x: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Table styling */
+.product-table {
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.product-table thead {
+  background-color: #f8fafc;
+}
+
+.table-header {
+  padding: 16px 24px;
+  text-align: left;
+  color: #4b5563;
+  font-weight: 500;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* Table row styling */
+.product-row {
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.product-image {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+}
+
+.product-name {
+  color: #1f2937;
+  font-weight: 500;
+}
+
+.product-brand {
+  color: #10b981;
+  font-size: 0.875rem;
+}
+
+/* Table data styling */
+.table-data {
+  padding: 16px 24px;
+  text-align: left;
+}
+
+.total {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.table-body{
+  display: flex;
+  justify-content: space-between;
+  height: 140px;
+  margin-bottom: 5px;
+  border: 1px solid lightGray;
+  border-radius: 10px;
+}
+.table-body img{
+  width: 100px;
+  flex: 0.2;
+  object-fit: cover;
+  /* border: 1px solid red; */
+}

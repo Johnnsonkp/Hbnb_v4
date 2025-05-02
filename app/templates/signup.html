@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="login or SignUp">
+    <title>Login Page | Hbnb</title>
+    <link rel="stylesheet" href="static/css/login.css">
+    <link rel="stylesheet" href="static/css/landing-page.css">
+    <link rel="icon" href="images/favicon.ico">
+</head>
+  <body>
+
+    <div id="status-bar">
+      <div class="alert-box success" id="success-bar">
+        <svg viewBox="0 0 24 24" class="alert-icon">
+          <path fill="currentColor"
+            d="M12,0A12,12,0,1,0,24,12,12.014,12.014,0,0,0,12,0Zm6.927,8.2-6.845,9.289a1.011,1.011,0,0,1-1.43.188L5.764,13.769a1,1,0,1,1,1.25-1.562l4.076,3.261,6.227-8.451A1,1,0,1,1,18.927,8.2Z">
+          </path>
+        </svg>
+        <span class="alert-text success-text">Your account has been saved.</span>
+      </div>      
+
+      <div class="alert-box error" id="error-bar">
+        <svg viewBox="0 0 24 24" class="alert-icon error-icon">
+          <path fill="currentColor"
+            d="M11.983,0a12.206,12.206,0,0,0-8.51,3.653A11.8,11.8,0,0,0,0,12.207A11.779,11.779,0,0,0,11.8,24h.214A12.111,12.111,0,0,0,24,11.791h0A11.766,11.766,0,0,0,11.983,0ZM10.5,16.542a1.476,1.476,0,0,1,1.449-1.53h.027a1.527,1.527,0,0,1,1.523,1.47,1.475,1.475,0,0,1-1.449,1.53h-.027A1.529,1.529,0,0,1,10.5,16.542ZM11,12.5v-6a1,1,0,0,1,2,0v6a1,1,0,1,1-2,0Z">
+          </path>
+        </svg>
+        <span class="alert-text error-text">Your email address is invalid.</span>
+      </div>
+    </div>
+
+    <header class="header-container">
+      <nav class="nav-container">
+        <div class="logo">
+          <a class="hover-chip" href="/home">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="chip-icon" viewBox="0 0 16 16">
+              <path
+                d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z">
+              </path>
+            </svg>
+            <span class="chip-label">Hbnb</span>
+          </a>
+          </div>
+          <div class="search-box">
+            <div class="search-box-inner">
+              <input type="text" placeholder="Search..." class="input-field" />
+              <select class="input-field">
+                <option value="">Category</option>
+                <option value="house">House</option>
+                <option value="apartment">Apartment</option>
+                <option value="condo">Condo</option>
+              </select>
+              <input type="number" placeholder="Min Price" class="input-field" />
+              <input type="number" placeholder="Max Price" class="input-field" />
+              <button class="search-button">
+              </button>
+            </div>
+          </div>
+
+          <ul class="nav-links">
+              <li><a href="#about">About</a></li>
+              <li class="card">
+                <div class="dropdown-container">
+                  <div class="group">
+                    <button type="button" class="dropdown-button">
+                      <span class="dropdown-icon">
+                      </span>
+                    </button>
+                
+                    <div class="dropdown-menu">
+                      <div class="dropdown-options">
+                        <a href="/login" class="dropdown-option">Sign up</a>
+                        <a href="/login" class="dropdown-option">Log In</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+          </ul>
+      </nav>
+    </header>
+
+    <section class="auth-section">
+      <div class="auth-container">
+        <div class="auth-card">
+          <div class="auth-card-inner">
+            <h1 class="auth-title">Create a new account</h1>
+    
+            <form id="connect-google-button" method="post" action="/submit">
+              <button class="google-btn" type="submit">
+                <img
+                class="google-icon"
+                src="https://ucarecdn.com/8f25a2ba-bdcf-4ff1-b596-088f330416ef/"
+                alt="Google"
+                />
+                Sign un with Google
+              </button>
+            </form>
+    
+            <div class="divider">
+              <div class="line"></div>
+              <div class="or">or</div>
+              <div class="line"></div>
+            </div>
+    
+            <form class="auth-form" id="signupForm" method="POST" action="/submit">
+              <div>
+                <label for="email">Your email</label>
+                <input type="email" id="email" name="login" placeholder="john-smith@company.com" required>
+              </div>
+
+              <div>
+                <label for="first_name">First name</label>
+                <input type="text" id="first_name" name="login" placeholder="first name" required>
+              </div>
+
+              <div>
+                <label for="last_name">Last name</label>
+                <input type="text" id="last_name" name="login" placeholder="last name" required>
+              </div>
+    
+              <div>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+              </div>
+    
+              <div class="remember-reset">
+                <!-- <label><input type="checkbox" id="remember"> Remember me</label>
+                <a href="#">Forgot password?</a> -->
+              </div>
+    
+              <button type="submit" class="submit-btn">Sign up</button>
+    
+              <p class="signup-text">
+                Already have an account? <a href="/login">Sign in</a>
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      loadSVG()
+
+      document.getElementById('signupForm').addEventListener('submit', handleSubmit);
+
+      async function handleSubmit(event) {
+        event.preventDefault();
+        const form = event.target;
+
+        await fetch('http://127.0.0.1:5000/api/v1/users/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+          body: JSON.stringify({
+            first_name: form.first_name.value,
+            last_name: form.last_name.value,
+            email: form.email.value,
+            password: form.password.value
+          })
+        })
+          .then(res => res.json())
+          .then(data => {
+            handleStatus(data)
+            console.log('Success:', data)
+          })
+          .catch(error => console.error('Error:', error));
+      }
+
+      function handleStatus(status){
+        let statusBar = document.getElementById("status-bar")
+        let successBar = document.getElementById("success-bar")
+        let errorBar = document.getElementById("error-bar")
+
+        if(status.message){
+          successBar.style.display = "block"
+          if(successBar){
+            let successTxt = document.querySelector(".success-text")
+            successTxt.innerHTML = status.message
+          }
+          setTimeout(() => {successBar.style.display = "none"}, 3000);
+        }
+        else{
+          errorBar.style.display = "block"
+          if(errorBar){
+            let errorTxt = document.querySelector(".error-text")
+            errorTxt.innerHTML = status.error
+          }
+          setTimeout(() => {errorBar.style.display = "none"}, 3000);
+        }
+      }
+
+      function loadSVG() {
+        const searchIcon = document.getElementsByClassName('search-button');
+        const dropDown = document.getElementsByClassName('dropdown-button');
+        if (searchIcon){
+            fetch('/static/svg/searchIcon.js')
+              .then(res => res.text())
+              .then(res => {
+                const svgMatch = res.match(/<svg[\s\S]*?<\/svg>/);
+                const matches = [...res.matchAll(/<svg[\s\S]*?<\/svg>/g)];
+                searchIcon[0].innerHTML = svgMatch;
+              });
+        }
+        if (dropDown){
+            fetch('/static/svg/userIcon.js')
+              .then(res => res.text())
+              .then(res => {
+                const svgMatch = res.match(/<svg[\s\S]*?<\/svg>/);
+                const matches = [...res.matchAll(/<svg[\s\S]*?<\/svg>/g)];
+                dropDown[0].innerHTML = svgMatch;
+              });
+          }
+      }
+      
+    </script>
+  </body>
+</html>

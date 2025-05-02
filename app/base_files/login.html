@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="login or SignUp">
+    <title>Login Page | Hbnb</title>
+    <link rel="stylesheet" href="/static/login.css">
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="icon" href="static/images/icon.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+  <body>
+
+    <div id="status-bar">
+      <div class="alert-box success" id="success-bar">
+        <svg viewBox="0 0 24 24" class="alert-icon">
+          <path fill="currentColor"
+            d="M12,0A12,12,0,1,0,24,12,12.014,12.014,0,0,0,12,0Zm6.927,8.2-6.845,9.289a1.011,1.011,0,0,1-1.43.188L5.764,13.769a1,1,0,1,1,1.25-1.562l4.076,3.261,6.227-8.451A1,1,0,1,1,18.927,8.2Z">
+          </path>
+        </svg>
+        <span class="alert-text success-text">Your account has been saved.</span>
+      </div>      
+
+      <div class="alert-box error" id="error-bar">
+        <svg viewBox="0 0 24 24" class="alert-icon error-icon">
+          <path fill="currentColor"
+            d="M11.983,0a12.206,12.206,0,0,0-8.51,3.653A11.8,11.8,0,0,0,0,12.207A11.779,11.779,0,0,0,11.8,24h.214A12.111,12.111,0,0,0,24,11.791h0A11.766,11.766,0,0,0,11.983,0ZM10.5,16.542a1.476,1.476,0,0,1,1.449-1.53h.027a1.527,1.527,0,0,1,1.523,1.47,1.475,1.475,0,0,1-1.449,1.53h-.027A1.529,1.529,0,0,1,10.5,16.542ZM11,12.5v-6a1,1,0,0,1,2,0v6a1,1,0,1,1-2,0Z">
+          </path>
+        </svg>
+        <span class="alert-text error-text">Your email address is invalid.</span>
+      </div>  
+    </div>
+
+    <header class="header-container">
+      <nav class="nav-container">
+        <div class="logo">
+          <a class="hover-chip" href="/home">
+            <img src="/static/images/logo-nav.png" />
+          </a>
+        </div>
+        <div class="search-box">
+        </div>
+
+          <ul class="nav-links">
+            <li><a href="/listings">About</a></li>
+            <li><a href="/listings">Listings</a></li>
+            <li class="card">
+              
+              <div class="dropdown-container">
+                <div class="group">
+                  <button type="button" class="dropdown-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 16 16">
+                      <rect x="0.5" y="0.5" width="15" height="15" rx="20" ry="20" fill="#f3f4f6" stroke="#9ca3af" strokeWidth="1"/>
+                      <path fill="#9ca3af" d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+                    </svg>
+                    <!-- <span class="dropdown-icon"></span> -->
+                  </button>
+              
+                  <div class="dropdown-menu">
+                    <div class="dropdown-options">
+                      <button id="user-auth-details"></button>
+                      <a href="/auth/sign-up" class="dropdown-option">
+                        <span class="item">
+                          <img class="login-image" src="/static/images/sign-up-48.png" />
+                          Sign up
+                        </span>
+                      </a>
+                      
+                      <a href="/auth/login" class="dropdown-option">
+                        <span class="item">
+                          <img class="login-image" src="/static/images/login-50.png" />
+                          Log In
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+      </nav>
+    </header>
+
+    <section class="auth-section">
+      <div class="auth-container">
+        <div class="auth-card">
+          <div class="auth-card-inner">
+            <h1 class="auth-title">Sign in to your account</h1>
+            <!-- <form class="auth-form" id="loginForm" method="POST" action="/submit"> -->
+            <form class="auth-form" id="loginForm">
+              <div>
+                <label for="email">Your email</label>
+                <input type="email" id="email" name="login" placeholder="john-smith@company.com" required>
+              </div>
+
+              <div>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+              </div>
+    
+              <div class="remember-reset">
+                <!-- <label><input type="checkbox" id="remember"> Remember me</label>
+                <a href="#">Forgot password?</a> -->
+              </div>
+              <button type="submit" class="submit-btn">Sign in </button>
+              <p class="signup-text">
+                Don’t have an account yet? <a href="/auth/sign-up">Sign up</a>
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+
+      let submitBtn = document.querySelector('.submit-btn')
+      // document.getElementById('loginForm').addEventListener('submit', handleSubmit);
+      document.getElementById('loginForm').addEventListener('submit', handleSubmit);
+
+      async function handleSubmit(event) {
+        event.preventDefault();
+        const loadSpinner = `<div class="loader"></div>`;
+        submitBtn.innerHTML = ""
+        submitBtn.innerHTML = loadSpinner
+        submitBtn.classList.add("loading")
+        const form = event.target;
+
+        try {
+          const response = await fetch('http://127.0.0.1:5000/api/v1/auth/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+            },
+            body: JSON.stringify({
+              email: form.email.value,
+              password: form.password.value
+            })
+          });
+          const data = await response.json();
+          handleStatus(data);
+
+          if (data.access_token) {
+            console.log('Success:', data);
+            saveJWTToken(data.access_token)
+            handleNavigate(data.access_token)
+          }
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      }
+
+      function saveJWTToken(token) {
+        if (token) {
+          localStorage.setItem('local_events_jwt', token);
+        } else {
+          console.warn("No token provided to save.");
+        }
+      }
+
+      function getJWTToken() {
+        const jwtToken = localStorage.getItem('local_events_jwt')
+
+        if (jwtToken) {
+          return jwtToken
+        } else {
+          console.warn("No token provided to save.");
+        }
+      }
+
+      const callback = async (token) => {
+        console.log("callback", token)
+
+        try {
+          return fetch('http://127.0.0.1:5000/api/v1/auth/callback', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({token: token}),
+            credentials: 'include'
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.redirect) {
+              window.location.href = data.redirect;
+            }
+          })
+
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      }
+
+
+      function handleNavigate(token){
+        setTimeout(() => {
+          submitBtn.innerHTML = "Sign in"
+          callback(token)
+          // window.location.href = "/listings";
+        }, [3000])
+      }
+
+
+      function handleStatus(response){
+        console.log("response", response)
+
+        let statusBar = document.getElementById("status-bar")
+        let successBar = document.getElementById("success-bar")
+        let errorBar = document.getElementById("error-bar")
+        let fixedNav = document.querySelector('.header-container')
+        let successTxt = document.querySelector(".success-text")
+        let errorTxt = document.querySelector(".error-text")
+
+        function addDelay(statusBar){
+          setTimeout(() => {
+            statusBar.style.display = "none"
+            statusBar.style.position = "static"
+            statusBar.style.zIndex = 0
+          }, 3000);
+        }
+
+        const handleLoginSuccess = () => {
+          successBar.style.display = "block"
+          successBar.style.position = "relative"
+          successBar.style.zIndex = 9999999999
+          fixedNav.style.zIndex = 0
+
+          if(successBar){
+            successTxt.innerHTML = "User successfully signed in"
+            addDelay(successBar)
+          }
+        }
+
+        const handleLoginError = () => {
+          errorBar.style.display = "block"
+          errorBar.style.position = "relative"
+          errorBar.style.zIndex = 9999999999
+          fixedNav.style.zIndex = 0
+
+          if(errorBar){
+            errorTxt.innerHTML = response.error
+            addDelay(errorBar)
+          }
+        }
+
+        if(response.access_token){
+          handleLoginSuccess()
+        }
+        else{
+          handleLoginError()
+        }
+
+        setTimeout(() => {
+          fixedNav.style.zIndex = 9999999999
+          submitBtn.innerHTML = "Sign in"
+          submitBtn.classList.remove("loading")
+          successTxt.innerHTML = ""
+          errorTxt.innerHTML = ""
+        }, 3000);
+      }
+    </script>
+  </body>
+</html>

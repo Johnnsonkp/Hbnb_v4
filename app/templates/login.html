@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="login or SignUp">
+    <title>Login Page | Hbnb</title>
+    <link rel="stylesheet" href="/static/css/login.css">
+    <link rel="stylesheet" href="/static/css/landing-page.css">
+    <link rel="icon" href="images/favicon.ico">
+</head>
+  <body>
+
+    <div id="status-bar">
+      <div class="alert-box success" id="success-bar">
+        <svg viewBox="0 0 24 24" class="alert-icon">
+          <path fill="currentColor"
+            d="M12,0A12,12,0,1,0,24,12,12.014,12.014,0,0,0,12,0Zm6.927,8.2-6.845,9.289a1.011,1.011,0,0,1-1.43.188L5.764,13.769a1,1,0,1,1,1.25-1.562l4.076,3.261,6.227-8.451A1,1,0,1,1,18.927,8.2Z">
+          </path>
+        </svg>
+        <span class="alert-text success-text">Your account has been saved.</span>
+      </div>      
+
+      <div class="alert-box error" id="error-bar">
+        <svg viewBox="0 0 24 24" class="alert-icon error-icon">
+          <path fill="currentColor"
+            d="M11.983,0a12.206,12.206,0,0,0-8.51,3.653A11.8,11.8,0,0,0,0,12.207A11.779,11.779,0,0,0,11.8,24h.214A12.111,12.111,0,0,0,24,11.791h0A11.766,11.766,0,0,0,11.983,0ZM10.5,16.542a1.476,1.476,0,0,1,1.449-1.53h.027a1.527,1.527,0,0,1,1.523,1.47,1.475,1.475,0,0,1-1.449,1.53h-.027A1.529,1.529,0,0,1,10.5,16.542ZM11,12.5v-6a1,1,0,0,1,2,0v6a1,1,0,1,1-2,0Z">
+          </path>
+        </svg>
+        <span class="alert-text error-text">Your email address is invalid.</span>
+      </div>  
+    </div>
+
+
+    <header class="header-container">
+      <nav class="nav-container">
+        <div class="logo">
+          <a class="hover-chip" href="/home">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="chip-icon" viewBox="0 0 16 16">
+              <path
+                d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z">
+              </path>
+            </svg>
+            <span class="chip-label">Hbnb</span>
+          </a>
+          </div>
+          <div class="search-box">
+            <div class="search-box-inner">
+              <input type="text" placeholder="Search..." class="input-field" />
+              <select class="input-field">
+                <option value="">Category</option>
+                <option value="house">House</option>
+                <option value="apartment">Apartment</option>
+                <option value="condo">Condo</option>
+              </select>
+              <input type="number" placeholder="Min Price" class="input-field" />
+              <input type="number" placeholder="Max Price" class="input-field" />
+              <button class="search-button">
+              </button>
+            </div>
+          </div>
+
+          <ul class="nav-links">
+              <li><a href="#about">About</a></li>
+              <li class="card">
+                <div class="dropdown-container">
+                  <div class="group">
+                    <button type="button" class="dropdown-button">
+                      <span class="dropdown-icon">
+                      </span>
+                    </button>
+                
+                    <div class="dropdown-menu">
+                      <div class="dropdown-options">
+                        <a href="/auth/sign-up" class="dropdown-option">Sign up</a>
+                        <a href="/auth/login" class="dropdown-option login-button">Log In</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+          </ul>
+      </nav>
+    </header>
+
+    <section class="auth-section">
+      <div class="auth-container">
+        <div class="auth-card">
+          <div class="auth-card-inner">
+            <h1 class="auth-title">Sign in to your account</h1>
+    
+            <form id="connect-google-button" method="post" action="">
+              <button class="google-btn" type="submit">
+                <img
+                class="google-icon"
+                src="https://ucarecdn.com/8f25a2ba-bdcf-4ff1-b596-088f330416ef/"
+                alt="Google"
+                />
+                Sign in with Google
+              </button>
+            </form>
+    
+            <div class="divider">
+              <div class="line"></div>
+              <div class="or">or</div>
+              <div class="line"></div>
+            </div>
+    
+            <form class="auth-form" id="loginForm" method="POST" action="/submit">
+              <div>
+                <label for="email">Your email</label>
+                <input type="email" id="email" name="login" placeholder="john-smith@company.com" required>
+              </div>
+
+              <div>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+              </div>
+    
+              <div class="remember-reset">
+                <!-- <label><input type="checkbox" id="remember"> Remember me</label>
+                <a href="#">Forgot password?</a> -->
+              </div>
+    
+              <button type="submit" class="submit-btn">Sign in </button>
+    
+              <p class="signup-text">
+                Don’t have an account yet? <a href="/auth/sign-up">Sign up</a>
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      loadSVG()
+      // handleUserAuth()
+
+      // const getUserInfo = async () => {
+      //   try {
+      //     const response = await fetch('http://127.0.0.1:5000/api/v1/users/current_user', {
+      //       method: 'GET',
+      //       credentials: 'include',
+      //       headers: {
+      //         'Content-Type': 'application/json',
+      //         'Accept': 'application/json',
+      //       },
+      //       mode: 'cors'
+      //     });
+      //     const data = await response.json();
+      //     return data;
+      //   } catch (error) {
+      //     console.error('Failed to fetch listings:', error);
+      //   }
+      // }
+
+      // const handleUserAuth = () => {
+      //   console.log("handleUserAuth")
+      //   const dropDown = document.querySelector('.dropdown-button');
+      //   const userIsAuth = getJWTToken()
+        
+      //   if(userIsAuth){
+      //     console.log("if userIsAuth", userIsAuth)
+      //     getUserInfo().then((data) => dropDown.innerHTML = data)
+      //   }
+      //   else{
+      //     console.log("else", userIsAuth)
+
+      //     fetch('/static/svg/userIcon.js')
+      //       .then(res => res.text())
+      //       .then(res => {
+      //         const svgMatch = res.match(/<svg[\s\S]*?<\/svg>/);
+      //         const matches = [...res.matchAll(/<svg[\s\S]*?<\/svg>/g)];
+      //         dropDown[0].innerHTML = svgMatch;
+      //       });
+      //   }
+      // }
+
+
+      let submitBtn = document.querySelector('.submit-btn')
+      document.getElementById('loginForm').addEventListener('submit', handleSubmit);
+
+      async function handleSubmit(event) {
+        event.preventDefault();
+        const loadSpinner = `<div class="loader"></div>`;
+        submitBtn.innerHTML = ""
+        submitBtn.innerHTML = loadSpinner
+        submitBtn.classList.add("loading")
+        const form = event.target;
+
+        try {
+          const response = await fetch('http://127.0.0.1:5000/api/v1/auth/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+            },
+            body: JSON.stringify({
+              email: form.email.value,
+              password: form.password.value
+            })
+          });
+          const data = await response.json();
+          handleStatus(data);
+
+          if (data.access_token) {
+            console.log('Success:', data);
+            saveJWTToken(data.access_token)
+            handleNavigate(data.access_token)
+          }
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      }
+
+      function saveJWTToken(token) {
+        if (token) {
+          localStorage.setItem('local_events_jwt', token);
+        } else {
+          console.warn("No token provided to save.");
+        }
+      }
+
+      function getJWTToken() {
+        const jwtToken = localStorage.getItem('local_events_jwt')
+
+        if (jwtToken) {
+          return jwtToken
+        } else {
+          console.warn("No token provided to save.");
+        }
+      }
+
+      const callback = async (token) => {
+        console.log("callback", token)
+
+        try {
+          return fetch('http://127.0.0.1:5000/api/v1/auth/callback', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({token: token}),
+            credentials: 'include'
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.redirect) {
+              window.location.href = data.redirect;
+            }
+          })
+
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      }
+
+
+      function handleNavigate(token){
+        setTimeout(() => {
+          submitBtn.innerHTML = "Sign in"
+          callback(token)
+          // window.location.href = "/listings";
+        }, [3000])
+      }
+
+
+      function handleStatus(response){
+        let statusBar = document.getElementById("status-bar")
+        let successBar = document.getElementById("success-bar")
+        let errorBar = document.getElementById("error-bar")
+
+        if(response.access_token){
+          successBar.style.display = "block"
+          if(successBar){
+            let successTxt = document.querySelector(".success-text")
+            successTxt.innerHTML = "User successfully signed in"
+          }
+          setTimeout(() => {successBar.style.display = "none"}, 3000);
+        }
+        else{
+          errorBar.style.display = "block"
+          if(errorBar){
+            let errorTxt = document.querySelector(".error-text")
+            errorTxt.innerHTML = response.error
+          }
+          setTimeout(() => {errorBar.style.display = "none"}, 3000);
+        }
+      }
+
+      function loadSVG() {
+        const searchIcon = document.getElementsByClassName('search-button');
+        const dropDown = document.getElementsByClassName('dropdown-button');
+        if (searchIcon){
+            fetch('/static/svg/searchIcon.js')
+              .then(res => res.text())
+              .then(res => {
+                const svgMatch = res.match(/<svg[\s\S]*?<\/svg>/);
+                const matches = [...res.matchAll(/<svg[\s\S]*?<\/svg>/g)];
+                searchIcon[0].innerHTML = svgMatch;
+              });
+        }
+        if (dropDown){
+          fetch('/static/svg/userIcon.js')
+            .then(res => res.text())
+            .then(res => {
+              const svgMatch = res.match(/<svg[\s\S]*?<\/svg>/);
+              const matches = [...res.matchAll(/<svg[\s\S]*?<\/svg>/g)];
+              dropDown[0].innerHTML = svgMatch;
+            });
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="login or SignUp">
+    <title>Login Page | Hbnb</title>
+    <link rel="stylesheet" href="/static/login.css">
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="icon" href="static/images/icon.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+  <body>
+
+    <div id="status-bar">
+      <div class="alert-box success" id="success-bar">
+        <svg viewBox="0 0 24 24" class="alert-icon">
+          <path fill="currentColor"
+            d="M12,0A12,12,0,1,0,24,12,12.014,12.014,0,0,0,12,0Zm6.927,8.2-6.845,9.289a1.011,1.011,0,0,1-1.43.188L5.764,13.769a1,1,0,1,1,1.25-1.562l4.076,3.261,6.227-8.451A1,1,0,1,1,18.927,8.2Z">
+          </path>
+        </svg>
+        <span class="alert-text success-text">Your account has been saved.</span>
+      </div>      
+
+      <div class="alert-box error" id="error-bar">
+        <svg viewBox="0 0 24 24" class="alert-icon error-icon">
+          <path fill="currentColor"
+            d="M11.983,0a12.206,12.206,0,0,0-8.51,3.653A11.8,11.8,0,0,0,0,12.207A11.779,11.779,0,0,0,11.8,24h.214A12.111,12.111,0,0,0,24,11.791h0A11.766,11.766,0,0,0,11.983,0ZM10.5,16.542a1.476,1.476,0,0,1,1.449-1.53h.027a1.527,1.527,0,0,1,1.523,1.47,1.475,1.475,0,0,1-1.449,1.53h-.027A1.529,1.529,0,0,1,10.5,16.542ZM11,12.5v-6a1,1,0,0,1,2,0v6a1,1,0,1,1-2,0Z">
+          </path>
+        </svg>
+        <span class="alert-text error-text">Your email address is invalid.</span>
+      </div>
+    </div>
+
+    <!-- <header class="header-container">
+      <nav class="nav-container">
+        <div class="logo">
+          <a class="hover-chip" href="/home">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="chip-icon" viewBox="0 0 16 16">
+              <path
+                d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z">
+              </path>
+            </svg>
+            <span class="chip-label">Hbnb</span>
+          </a>
+          </div>
+          <div class="search-box">
+            <div class="search-box-inner">
+              <input type="text" placeholder="Search..." class="input-field" />
+              <select class="input-field">
+                <option value="">Category</option>
+                <option value="house">House</option>
+                <option value="apartment">Apartment</option>
+                <option value="condo">Condo</option>
+              </select>
+              <input type="number" placeholder="Min Price" class="input-field" />
+              <input type="number" placeholder="Max Price" class="input-field" />
+              <button class="search-button">
+              </button>
+            </div>
+          </div>
+
+          <ul class="nav-links">
+              <li><a href="#about">About</a></li>
+              <li class="card">
+                <div class="dropdown-container">
+                  <div class="group">
+                    <button type="button" class="dropdown-button">
+                      <span class="dropdown-icon">
+                      </span>
+                    </button>
+                
+                    <div class="dropdown-menu">
+                      <div class="dropdown-options">
+                        <a href="/login" class="dropdown-option">Sign up</a>
+                        <a href="/login" class="dropdown-option">Log In</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+          </ul>
+      </nav>
+    </header> -->
+
+    <header class="header-container">
+      <nav class="nav-container">
+        <div class="logo">
+          <a class="hover-chip" href="/home">
+            <img src="/static/images/logo-nav.png" />
+          </a>
+        </div>
+        <div class="search-box">
+          <!-- <div class="search-box-inner">
+            <input type="text" placeholder="Search..." class="input-field" />
+            <select class="input-field">
+              <option value="">Category</option>
+              <option value="house">House</option>
+              <option value="apartment">Apartment</option>
+              <option value="condo">Condo</option>
+            </select>
+            <input id="datepicker" class="date-input input-field"" type="text" placeholder="Check in">
+            <input id="datepicker" class="date-input input-field"" type="text" placeholder="Check out">
+            <button class="search-button">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                  stroke-width="1.5" stroke="currentColor" class="icon">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607z" />
+              </svg>
+            </button>
+          </div> -->
+        </div>
+
+          <ul class="nav-links">
+            <li><a href="/listings">About</a></li>
+            <li><a href="/listings">Listings</a></li>
+            <li class="card">
+              
+              <div class="dropdown-container">
+                <div class="group">
+                  <button type="button" class="dropdown-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 16 16">
+                      <rect x="0.5" y="0.5" width="15" height="15" rx="20" ry="20" fill="#f3f4f6" stroke="#9ca3af" strokeWidth="1"/>
+                      <path fill="#9ca3af" d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+                    </svg>
+                    <!-- <span class="dropdown-icon"></span> -->
+                  </button>
+              
+                  <div class="dropdown-menu">
+                    <div class="dropdown-options">
+                      <button id="user-auth-details"></button>
+                      <a href="/auth/sign-up" class="dropdown-option">
+                        <span class="item">
+                          <img class="login-image" src="/static/images/sign-up-48.png" />
+                          Sign up
+                        </span>
+                      </a>
+                      
+                      <a href="/auth/login" class="dropdown-option">
+                        <span class="item">
+                          <img class="login-image" src="/static/images/login-50.png" />
+                          Log In
+                        </span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+      </nav>
+    </header>
+
+    <section class="auth-section">
+      <div class="auth-container">
+        <div class="auth-card">
+          <div class="auth-card-inner">
+            <h1 class="auth-title">Create a new account</h1>
+    
+            <!-- <form id="connect-google-button" method="post" action="/submit">
+              <button class="google-btn" type="submit">
+                <img
+                class="google-icon"
+                src="https://ucarecdn.com/8f25a2ba-bdcf-4ff1-b596-088f330416ef/"
+                alt="Google"
+                />
+                Sign un with Google
+              </button>
+            </form> -->
+    
+            <!-- <div class="divider">
+              <div class="line"></div>
+              <div class="or">or</div>
+              <div class="line"></div>
+            </div> -->
+    
+            <form class="auth-form" id="signupForm" method="POST" action="/submit">
+              <div>
+                <label for="email">Your email</label>
+                <input type="email" id="email" name="login" placeholder="john-smith@company.com" required>
+              </div>
+
+              <div>
+                <label for="first_name">First name</label>
+                <input type="text" id="first_name" name="login" placeholder="first name" required>
+              </div>
+
+              <div>
+                <label for="last_name">Last name</label>
+                <input type="text" id="last_name" name="login" placeholder="last name" required>
+              </div>
+    
+              <div>
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+              </div>
+    
+              <div class="remember-reset">
+                <!-- <label><input type="checkbox" id="remember"> Remember me</label>
+                <a href="#">Forgot password?</a> -->
+              </div>
+    
+              <button type="submit" class="submit-btn">Sign up</button>
+    
+              <p class="signup-text">
+                Already have an account? <a href="/login">Sign in</a>
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="static/signup.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        flatpickr("#datepicker", {
+            // Configuration options for Flatpickr
+            // You can customize the appearance and behavior here
+        });
+    </script>
+  </body>
+</html>

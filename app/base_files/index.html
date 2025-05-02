@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Flask + Jinja2 Example</title>
+  </head>
+  <body>
+      <h1>Welcome to the Home Page</h1>
+      
+      <h2>User Information</h2>
+      <p>Name: {{ user.name }}</p>
+      <p>Email: {{ user.email }}</p>
+      <p>Role: {{ user.role }}</p>
+
+      <ul>
+        {% for u in user %}
+          <li>{{ user.first_name }} - {{ user.email }}</li>
+          <li>{{ user.id }}</li>
+        {% endfor %}
+      </ul>
+
+      <h3>Visit our API:</h3>
+      <ul>
+          <li><a href="/api/v1/users">Get Users</a></li>
+          <li><a href="/api/v1/users/1">Get User by ID</a></li>
+      </ul>
+  </body>
+</html>

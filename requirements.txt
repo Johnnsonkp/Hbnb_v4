@@ -1,0 +1,10 @@
+flask
+flask-restx
+flask-bcrypt
+sqlalchemy
+flask-sqlalchemy
+flask-migrate
+pymysql
+cryptography
+flask-jwt-extended
+flask-cors
