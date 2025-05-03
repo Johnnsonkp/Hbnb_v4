@@ -193,7 +193,7 @@ class PlaceList(Resource):
         location = searchParams['market']
 
         result = facade.get_airbnb_api_data(location)
-        # print(result)
+        print(location)
 
         return result
 

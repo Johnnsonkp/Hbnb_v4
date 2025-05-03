@@ -34,14 +34,13 @@ def create_app(config_class="config.DevelopmentConfig"):
     )
 
     # jwt token session based cookies config
-    app.config['JWT_TOKEN_LOCATION'] = ['cookies']
-    app.config['JWT_COOKIE_SECURE'] = False
-    app.config['JWT_COOKIE_SAMESITE'] = 'Lax'
-    app.config['JWT_ACCESS_COOKIE_PATH'] = '/'
-    app.config['JWT_REFRESH_COOKIE_PATH'] = '/token/refresh'
-    app.config['JWT_COOKIE_CSRF_PROTECT'] = False 
-
-    app.config['JWT_SECRET_KEY'] = 'your-very-secret-jwt-key'
+    # app.config['JWT_TOKEN_LOCATION'] = ['cookies']
+    # app.config['JWT_COOKIE_SECURE'] = False
+    # app.config['JWT_COOKIE_SAMESITE'] = 'Lax'
+    # app.config['JWT_ACCESS_COOKIE_PATH'] = '/'
+    # app.config['JWT_REFRESH_COOKIE_PATH'] = '/token/refresh'
+    # app.config['JWT_COOKIE_CSRF_PROTECT'] = False 
+    # app.config['JWT_SECRET_KEY'] = 'your-very-secret-jwt-key'
 
     api = Api(app, version='1.0', title='HBnB API', description='HBnB Application API')
     

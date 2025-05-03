@@ -8,7 +8,7 @@ window.addEventListener('beforeunload', () => {
 
 async function getUserInfo(){
   try {
-    const response = await fetch('http://127.0.0.1:5000/api/v1/users/current_user', {
+    const response = await fetch(`${window.location.origin}/api/v1/users/current_user`, {
       method: 'GET',
       credentials: 'include',
       headers: {
@@ -82,14 +82,23 @@ function getCities(arr){
 
     for(let i = 0; i < 5; i ++){
 
-      getPicFromUnsplash(arr[i])
-      .then((data) => {
-        let params = new URLSearchParams({search: arr[i]});
-        let url = `http://127.0.0.1:5000/listings?${params.toString()}`;
+      // getPicFromUnsplash(arr[i])
+      // .then((data) => {
+      //   let params = new URLSearchParams({search: arr[i]});
+      //   let url = `http://127.0.0.1:5000/listings?${params.toString()}`;
 
-        let img_src = data.results[i].urls.full
-        cities_div.innerHTML += `<a href="${url}" class="cities-card"> <img src="${img_src}" class="" lazy></img>  <span class="inner">${arr[i]}</span> </a>`
-      })
+      //   let img_src = data.results[i].urls.full
+      //   cities_div.innerHTML += `<a href="${url}" class="cities-card"> <img src="${img_src}" class="" lazy></img>  <span class="inner">${arr[i]}</span> </a>`
+      // })
+
+      let params = new URLSearchParams({search: arr[i]});
+      let url = `${window.location.origin}/listings?${params.toString()}`;
+
+      let img_src = "https://images.unsplash.com/photo-1743309425925-72a2e4dbb8a4?q=80&w=2875&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+
+      cities_div.innerHTML += `<a href="${url}" class="cities-card"> 
+        <img src="${img_src}" class="" lazy></img>  <span class="inner">${arr[i]}</span> </a>`
+
     }
   }
 }
@@ -129,7 +138,7 @@ function getPlacesData(){
   const filterContainer = document.getElementsByClassName('sponsor-container');
   let a = document.createElement('a');
   if (filterContainer){
-    fetch('http://127.0.0.1:5000/api/v1/places/all')
+    fetch(`${window.location.origin}/api/v1/places/all`)
       .then(res => res.json())
       .then(res => {
         let arr = []
@@ -148,7 +157,7 @@ function getPlacesData(){
               category: arr[i],
             });
           
-            const url = `http://127.0.0.1:5000/listings?${params.toString()}`;
+            const url = `${window.location.origin}/listings?${params.toString()}`;
 
             a.classList.add("sponsor-link")
             a.style.padding = '5px'
@@ -193,7 +202,7 @@ async function getPicFromUnsplash(city) {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Accept-Version': 'v1',
-      'Authorization': `Client-ID d7zJhS8h-i0PEiAIM5TgjKJswwA85CDDse62dQAaTb8`,
+      'Authorization': `Client-ID `,
     },
     mode: 'cors'
   })
@@ -203,6 +212,8 @@ async function getPicFromUnsplash(city) {
 
 document.getElementsByClassName('search-button')[0].addEventListener("click", function(event){
   event.preventDefault()
+
+  console.log("window.location", window.location.origin)
 
   const searchText = document.querySelector('.search-box-inner input[type="text"]').value;
   const category = document.querySelector('.select-input-field').value;
@@ -217,7 +228,7 @@ document.getElementsByClassName('search-button')[0].addEventListener("click", fu
     checkout: checkOutDate,
   });
 
-  const url = `http://127.0.0.1:5000/listings?${params.toString()}`;
+  const url = `${window.location.origin}/listings?${params.toString()}`;
   return window.location.href = url
 });
 

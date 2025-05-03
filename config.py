@@ -16,7 +16,8 @@ class Config:
 
 class DevelopmentConfig(Config):
     DEBUG = True
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://hbnb:hbnb_password@localhost/hbnb_db'
+    # SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://hbnb:hbnb_password@localhost/hbnb_db'
+    SQLALCHEMY_DATABASE_URI = os.getenv("SQLALCHEMY_DATABASE_URI")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     JWT_TOKEN_LOCATION = ['cookies']
     JWT_COOKIE_SECURE = False

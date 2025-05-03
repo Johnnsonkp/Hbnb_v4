@@ -111,11 +111,7 @@ function Listings() {
         .then((data) => {
           if(data){
             console.log("data", data)
-            
             let parsedData = parsedPlaces(data)
-            // const combinedData = [...ListingDefault, ...parsedData];
-            // let shuffledData = shuffleArray(combinedData)
-
             const combinedData = parsedData;
             let shuffledData = shuffleArray(combinedData)
             storePlaces(shuffledData, placeDispatch);

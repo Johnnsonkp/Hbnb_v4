@@ -13,13 +13,13 @@ import requests
 import re
 import os
 from dotenv import load_dotenv
-load_dotenv()
 import cloudinary
 from cloudinary import CloudinaryImage
 import cloudinary.uploader
 import cloudinary.api
-from dotenv import load_dotenv
 
+
+load_dotenv()
 
 class HBnBFacade:
     def __init__(self):
@@ -101,12 +101,11 @@ class HBnBFacade:
         conn = http.client.HTTPSConnection("address-from-to-latitude-longitude.p.rapidapi.com")
 
         headers = {
-            'x-rapidapi-key': "16e6a9af6fmshfc2a1fe0e9e3099p1cc6e4jsn6635d861b624",
-            'x-rapidapi-host': "address-from-to-latitude-longitude.p.rapidapi.com"
+            'x-rapidapi-key': os.getenv('RAPID_API_KEY'),
+            'x-rapidapi-host': os.getenv('RAPID_API_HOST')
         }
         
         conn.request("GET", f"/geolocationapi?lat={place_latitude}&lng={place_longitude}", headers=headers)
-
         res = conn.getresponse()
         data = res.read()
 
@@ -218,9 +217,6 @@ class HBnBFacade:
 
 
 
-
-
-
     # --- Reviews ---
     def create_review(self, review_data):
         review = Review(**review_data)
@@ -271,8 +267,10 @@ class HBnBFacade:
     def get_airbnb_api_data(self, location='australia', checkin='2025-09-12', checkout='2025-10-13', adults=1, children=0, infants=0):
         conn = http.client.HTTPSConnection("airbnb13.p.rapidapi.com")
 
+        print(f"env var {os.getenv('RAPID_API_KEY')}")
+
         headers = {
-            'x-rapidapi-key': "16e6a9af6fmshfc2a1fe0e9e3099p1cc6e4jsn6635d861b624",
+            'x-rapidapi-key': os.getenv('RAPID_API_KEY'),
             'x-rapidapi-host': "airbnb13.p.rapidapi.com"
         }
 
@@ -280,18 +278,8 @@ class HBnBFacade:
 
         res = conn.getresponse()
         data = res.read()
-
-        print("<------------------------------------")
-        # print(data.decode("utf-8"))
-        print("------------------------------------>")
-
         list_arr = []
-
-        # for i in range(len(data)):
-        #     if i < 11:
-        #         list_arr.append(data[i])
-
-        # return json.loads(list_arr.decode("utf-8"))    
+  
         return json.loads(data.decode("utf-8"))
     
 
