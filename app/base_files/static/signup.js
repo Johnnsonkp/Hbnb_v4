@@ -3,8 +3,9 @@ document.getElementById('signupForm').addEventListener('submit', handleSubmit);
 async function handleSubmit(event) {
   event.preventDefault();
   const form = event.target;
+  const base_url = window.location.origin
 
-  await fetch('http://127.0.0.1:5000/api/v1/users/', {
+  await fetch(`${base_url}/api/v1/users/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

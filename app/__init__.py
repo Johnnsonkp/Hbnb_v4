@@ -17,15 +17,13 @@ def create_app(config_class="config.DevelopmentConfig"):
     app = Flask(__name__, static_folder='base_files/static')
     # app = Flask(__name__, static_folder='static/react', static_url_path='/static')
 
+    # CORS(app)
     # CORS(app, origins='http://localhost:5173/', supports_credentials=True)
     # CORS(app, supports_credentials=True)
     CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 
-    # CORS(app)
-    # CORS(app, origins='http://127.0.0.1:5173/', supports_credentials=True)
     # Load configuration from the specified config class
     app.config.from_object(config_class)
-
 
     cloudinary.config(
       cloud_name=app.config['CLOUD_NAME'],
@@ -49,7 +47,7 @@ def create_app(config_class="config.DevelopmentConfig"):
     jwt.init_app(app)
 
     # Initialize Flask-Migrate for handling database migrations
-    # migrate = Migrate(app, db)
+    migrate = Migrate(app, db)
 
     from app.api.v1.users import api as users_ns
     from app.api.v1.amenities import api as amenities_ns
