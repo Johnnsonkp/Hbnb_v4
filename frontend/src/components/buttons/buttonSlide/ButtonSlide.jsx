@@ -44,7 +44,7 @@ function ButtonSlide({titles, onClick, activeTab, handleSubmit}) {
   const parsedData_2 = async (place) => {
     console.log("parsedData_2 place", place)
     
-    if (place.length){
+    if (place.title){
       const formData = new FormData();
 
       formData.append('title', place.title.slice(0, 90));
@@ -64,11 +64,12 @@ function ButtonSlide({titles, onClick, activeTab, handleSubmit}) {
       formData.append('host_thumbnail', place.hostThumbnail || testThumbnail);
       formData.append('rating', place.rating || 0);
       formData.append('super_host', false);
+      formData.append('images', place.img);
 
       // Append each file separately
-      place.img.forEach((file, index) => {
-        formData.append('images', file);
-      });
+      // place.img.forEach((file, index) => {
+      //   formData.append('images', file);
+      // });
 
       try {
         console.log("formData", formData)

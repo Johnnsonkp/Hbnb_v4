@@ -78,7 +78,8 @@ class PlaceList(Resource):
         rating = request.form.get('rating')
         super_host = request.form.get('super_host', 'false').lower() == 'true'
 
-        images = request.files.getlist('images')
+        # images = request.files.getlist('images')
+        images = request.form.get('images')
 
         # user = facade.get_user(str(places_data.get('owner_id')))
         user = facade.get_user(str(owner_id))
@@ -88,16 +89,16 @@ class PlaceList(Resource):
         # the try catch is here in case setter validation fails
         # new_place = None
         img_urls = []
-        for index, img in enumerate(images):
-            public_id = str(city) + str(owner_id) + str(datetime.now())
-            print(f"public id {public_id}")
+        # for index, img in enumerate(images):
+        #     public_id = str(city) + str(owner_id) + str(datetime.now())
+        #     print(f"public id {public_id}")
 
-            url = facade.uploadImage(img, public_id)
-            if url:
-                img_urls.append(url)
+        #     img_url = facade.uploadImage(img, public_id)
+        #     if url:
+        #         img_urls.append(img_url)
 
-        if not img_urls:
-            return { 'error': "Failed to upload images" }, 400
+        # if not img_urls:
+        #     return { 'error': "Failed to upload images" }, 400
 
         place_data = {
             'title': title,
@@ -117,7 +118,8 @@ class PlaceList(Resource):
             'host_thumbnail': host_thumbnail,
             'rating': rating,
             'super_host': super_host,
-            'images': img_urls,  # Uploaded image URLs
+            # 'images': img_urls,
+            'images': images  
         }
         
         new_place = facade.create_place(place_data)
