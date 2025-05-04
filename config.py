@@ -1,8 +1,5 @@
 import os
 from flask import Flask
-from dotenv import load_dotenv
-
-load_dotenv()
 
 class Config:
     SECRET_KEY = os.getenv('SECRET_KEY', 'default_secret_key')
@@ -13,6 +10,7 @@ class Config:
     CLOUD_NAME = os.getenv('CLOUD_NAME')
     CLOUD_API_KEY = os.getenv('CLOUD_API_KEY')
     CLOUD_API_SECRET = os.getenv('CLOUD_API_SECRET')
+    RAPID_API_KEY = os.getenv('RAPID_API_KEY')
 
 class DevelopmentConfig(Config):
     DEBUG = True

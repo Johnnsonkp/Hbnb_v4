@@ -8,11 +8,14 @@ from flask import Flask
 from flask_cors import CORS
 from flask_bcrypt import Bcrypt
 from werkzeug.middleware.proxy_fix import ProxyFix
+from dotenv import load_dotenv
+import os
 import cloudinary
 
 jwt = JWTManager()
 db = SQLAlchemy()
 bcrypt = Bcrypt()
+load_dotenv()
 
 def create_app(config_class="config.DevelopmentConfig"):
     """ method used to create an app instance """
@@ -38,15 +41,6 @@ def create_app(config_class="config.DevelopmentConfig"):
       api_key=app.config['CLOUD_API_KEY'],
       api_secret=app.config['CLOUD_API_SECRET']
     )
-
-    # jwt token session based cookies config
-    # app.config['JWT_TOKEN_LOCATION'] = ['cookies']
-    # app.config['JWT_COOKIE_SECURE'] = False
-    # app.config['JWT_COOKIE_SAMESITE'] = 'Lax'
-    # app.config['JWT_ACCESS_COOKIE_PATH'] = '/'
-    # app.config['JWT_REFRESH_COOKIE_PATH'] = '/token/refresh'
-    # app.config['JWT_COOKIE_CSRF_PROTECT'] = False 
-    # app.config['JWT_SECRET_KEY'] = 'your-very-secret-jwt-key'
 
     api = Api(app, version='1.0', title='HBnB API', description='HBnB Application API')
     
@@ -75,7 +69,6 @@ def create_app(config_class="config.DevelopmentConfig"):
     with app.app_context():
         db.create_all()
 
-
     # routes
     @app.route('/home')
     def home():
@@ -97,10 +90,6 @@ def create_app(config_class="config.DevelopmentConfig"):
     def callback():
         return send_from_directory('base_files', 'login.html')
         # return render_template('login.html')
-    
-    # @app.route('/auth/login')
-    # def sign_up():
-    #     return render_template('signup.html')
     
     @app.route("/listings", defaults={"path": ""})
     @app.route("/listings/<path:path>")

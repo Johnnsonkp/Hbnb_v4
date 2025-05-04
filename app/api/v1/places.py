@@ -10,6 +10,7 @@ import random
 import requests
 from flask import request
 from datetime import datetime
+import app
 
 
 api = Namespace('places', description='Place operations')
@@ -208,10 +209,11 @@ class PlaceList(Resource):
         def get_airbnb_api_data():
             conn = http.client.HTTPSConnection("airbnb13.p.rapidapi.com")
 
-            print(f"env var {os.getenv('RAPID_API_KEY')}")
+            print(f"env var {app.config['RAPID_API_KEY}']}")
+
 
             headers = {
-                'x-rapidapi-key': os.getenv('RAPID_API_KEY'),
+                'x-rapidapi-key': app.config['RAPID_API_KEY}'],
                 'x-rapidapi-host': "airbnb13.p.rapidapi.com"
             }
 
