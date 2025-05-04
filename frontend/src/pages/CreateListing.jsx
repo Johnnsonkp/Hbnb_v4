@@ -230,8 +230,6 @@ function CreateListing() {
     }
   }
   
-  // console.log("files", files)
-  // console.log("filesURL", filesURL)
   console.log("userState id:", userState?.user?.id)
   
   return (

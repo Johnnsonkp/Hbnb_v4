@@ -61,8 +61,6 @@ class PlaceList(Resource):
     @api.response(400, 'Setter validation failure')
     def post(self):
         """Register a new place"""
-        # places_data = api.payload
-        # print(f"requests.form. {requests.form}")
         title = request.form.get('title')
         price = request.form.get('price')
         address = request.form.get('address')
@@ -80,9 +78,9 @@ class PlaceList(Resource):
         host_thumbnail = request.form.get('host_thumbnail')
         rating = request.form.get('rating')
         super_host = request.form.get('super_host', 'false').lower() == 'true'
+        images = request.files.getlist('images')
 
-        # images = request.files.getlist('images')
-        images = request.form.get('images')
+        # images = request.form.get('images')
 
         # user = facade.get_user(str(places_data.get('owner_id')))
         user = facade.get_user(str(owner_id))
@@ -93,19 +91,17 @@ class PlaceList(Resource):
         if any(place.title == title for place in all_places):
             return { 'error': "Listing already exists" }, 400
 
-        # the try catch is here in case setter validation fails
-        # new_place = None
         img_urls = []
-        # for index, img in enumerate(images):
-        #     public_id = str(city) + str(owner_id) + str(datetime.now())
-        #     print(f"public id {public_id}")
+        for index, img in enumerate(images):
+            public_id = str(city) + str(owner_id) + str(datetime.now())
+            print(f"public id {public_id}")
 
-        #     img_url = facade.uploadImage(img, public_id)
-        #     if url:
-        #         img_urls.append(img_url)
+            img_url = facade.uploadImage(img, public_id)
+            if url:
+                img_urls.append(img_url)
 
-        # if not img_urls:
-        #     return { 'error': "Failed to upload images" }, 400
+        if not img_urls:
+            return { 'error': "Failed to upload images" }, 400
 
         place_data = {
             'title': title,
@@ -125,8 +121,8 @@ class PlaceList(Resource):
             'host_thumbnail': host_thumbnail,
             'rating': rating,
             'super_host': super_host,
-            # 'images': img_urls,
-            'images': images  
+            'images': img_urls,
+            # 'images': images  
         }
         
         new_place = facade.create_place(place_data)
@@ -198,67 +194,67 @@ class PlaceList(Resource):
     @api.expect(place_model)
     @api.response(200, 'List of places retrieved successfully')
     def post(self):
-        # searchParams = api.payload 
-        # location = searchParams['market']
+        searchParams = api.payload 
+        location = searchParams['market']
 
-        # result = facade.get_airbnb_api_data(location)
-        # print(location)
+        result = facade.get_airbnb_api_data(location)
+        print(location)
 
-        # return result
+        return result
 
-        def get_airbnb_api_data():
-            conn = http.client.HTTPSConnection("airbnb13.p.rapidapi.com")
+        # def get_airbnb_api_data():
+        #     conn = http.client.HTTPSConnection("airbnb13.p.rapidapi.com")
 
-            print(f"env var {app.config['RAPID_API_KEY}']}")
+        #     print(f"env var {app.config['RAPID_API_KEY}']}")
 
 
-            headers = {
-                'x-rapidapi-key': app.config['RAPID_API_KEY}'],
-                'x-rapidapi-host': "airbnb13.p.rapidapi.com"
-            }
+        #     headers = {
+        #         'x-rapidapi-key': app.config['RAPID_API_KEY}'],
+        #         'x-rapidapi-host': "airbnb13.p.rapidapi.com"
+        #     }
 
-            conn.request("GET", f"/search-location?location=newyork&checkin=2025-09-12&checkout=2025-10-13&adults=1&children=0&infants=0&pets=0&page=1&currency=AUD", headers=headers)
+        #     conn.request("GET", f"/search-location?location=newyork&checkin=2025-09-12&checkout=2025-10-13&adults=1&children=0&infants=0&pets=0&page=1&currency=AUD", headers=headers)
 
-            res = conn.getresponse()
-            data = res.read()
-            list_arr = []
+        #     res = conn.getresponse()
+        #     data = res.read()
+        #     list_arr = []
       
-            return json.loads(data.decode("utf-8"))
+        #     return json.loads(data.decode("utf-8"))
 
 
-        location = "NewYork"
-        created_places = get_airbnb_api_data()
+        # location = "NewYork"
+        # created_places = get_airbnb_api_data()
 
-        if(created_places):
-            for index, place in enumerate(created_places):
-                if (index > 25):
-                    return
+        # if(created_places):
+        #     for index, place in enumerate(created_places):
+        #         if (index > 25):
+        #             return
 
-                print(f"created_places {created_places}")
-                print(f"place {place}")
+        #         print(f"created_places {created_places}")
+        #         print(f"place {place}")
 
-                place_data = {
-                    'title': place['title'],
-                    'price': place['price']['rate'],
-                    'address': place['address'],
-                    'city': place['city'],
-                    'property_type': place['property_type'],
-                    'description': place['description'],
-                    'bedrooms': place['bedrooms'],
-                    'beds': place['beds'],
-                    'bathrooms': place['bathrooms'],
-                    'owner_id': place['owner_id'],
-                    'latitude': place['latitude'],
-                    'longitude': place['longitude'],
-                    'url': place['url'],
-                    'deeplink': place['deeplink'],
-                    'host_thumbnail': place['host_thumbnail'],
-                    'rating': place['rating'],
-                    'super_host': place['super_host'],
-                    'images': place['images']
-                }
+        #         place_data = {
+        #             'title': place['title'],
+        #             'price': place['price']['rate'],
+        #             'address': place['address'],
+        #             'city': place['city'],
+        #             'property_type': place['property_type'],
+        #             'description': place['description'],
+        #             'bedrooms': place['bedrooms'],
+        #             'beds': place['beds'],
+        #             'bathrooms': place['bathrooms'],
+        #             'owner_id': place['owner_id'],
+        #             'latitude': place['latitude'],
+        #             'longitude': place['longitude'],
+        #             'url': place['url'],
+        #             'deeplink': place['deeplink'],
+        #             'host_thumbnail': place['host_thumbnail'],
+        #             'rating': place['rating'],
+        #             'super_host': place['super_host'],
+        #             'images': place['images']
+        #         }
 
-                print(f"place_data {place_data}")
+        #         print(f"place_data {place_data}")
                 
                 # new_place = facade.create_place(place_data) 
 
