@@ -16,6 +16,8 @@ function ButtonSlide({titles, onClick, activeTab, handleSubmit}) {
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
+  let testThumbnail = "https://a0.muscache.com/im/Portrait/Avatars/messaging/b3e03835-ade9-4eb7-a0bb-2466ab9a534d.jpg?im_t=R&im_w=240&im_f=airbnb-cereal-medium.ttf&im_c=ffffff"
+
   function transformPlace(place, owner_id) {
     return {
       title: place.title.slice(0, 90),
@@ -37,6 +39,53 @@ function ButtonSlide({titles, onClick, activeTab, handleSubmit}) {
       property_type: place.type,
       address: place.address,
     };
+  }
+
+  const parsedData_2 = async (place) => {
+    const formData = new FormData();
+
+    formData.append('title', place.title.slice(0, 90));
+    formData.append('address', place.address);
+    formData.append('description', place.description || "");
+    formData.append('price', place.price);
+    formData.append('bathrooms', place.bathrooms);
+    formData.append('bedrooms', place.bedrooms);
+    formData.append('beds', place.beds);
+    formData.append('city', place.city);
+    formData.append('property_type', place.type);
+    formData.append('latitude', place.latitude || 0);
+    formData.append('longitude', place.longitude || 0);
+    formData.append('owner_id', userState?.user?.id);
+    formData.append('url', place.url || '');
+    formData.append('deeplink', place.deeplink || '');
+    formData.append('host_thumbnail', place.hostThumbnail || testThumbnail);
+    formData.append('rating', place.rating || 0);
+    formData.append('super_host', false);
+
+    // Append each file separately
+    place.img.forEach((file, index) => {
+      formData.append('images', file);
+    });
+
+    try {
+      console.log("formData", formData)
+
+      const response = await fetch(`https://hbnbv4-production.up.railway.app/api/v1/places`, {
+        method: 'POST',
+        headers: {
+          // 'Content-Type': 'application/json',
+          // 'Accept': 'application/json',
+        },
+        mode: 'cors',
+        credentials: 'include',
+        body: formData, 
+      });
+
+      const data = await response.json();
+      console.log("Listing created", data);
+    } catch (error) {
+      console.error('Error posting listing:', error);
+    }
   }
 
 
@@ -149,41 +198,22 @@ function ButtonSlide({titles, onClick, activeTab, handleSubmit}) {
       let randomNumber = Math.floor(Math.random() * 5);
       console.log(randomNumber);
 
-      // postListing().then((data) => console.log("created listing", data))
-      // getListings()
-      // .then((data) => {
-        
-      //   for (let i = 0; i < placeState.placeListings.length; i++) {
-      //     const place = placeState.placeListings[i];
-
-      //     if (!data.some(listing => listing.title === place.title) && place.latitude !== undefined) {
-      //       console.log("place.title", place.title);
-      //       place.description == null? (place.description = place.title) : place.description
-
-      //       const parsedPlace = transformPlace(place, ids[randomNumber])
-      //       console.log("parsedPlace", parsedPlace);
-            
-      //       postListing(parsedPlace).then((d) => console.log("then posted place", d))
-      //       console.log("index", i);
-      //       break;
-      //     }
-      //   }
-      // })
-
-
-      for (let i = 0; i < placeState.placeListings.length; i++) {
-        const place = placeState.placeListings[i];
+      // for (let i = 0; i < placeState.placeListings.length; i++) {
+      for (let i = 0; i < 1; i++) {
+        const place = placeState.placeListings[randomNumber];
 
         // if (!data.some(listing => listing.title === place.title) && place.latitude !== undefined) {
-          console.log("place.title", place.title);
+        console.log("place.title", place.title);
+        console.log("place", place);
+        
         if( place.type !== undefined){ 
           
           place.description == null? (place.description = place.title) : place.description
-
-          const parsedPlace = transformPlace(place, ids[randomNumber])
-          console.log("parsedPlace", parsedPlace);
+          // const parsedPlace = transformPlace(place, ids[randomNumber])
+          // console.log("parsedPlace", parsedPlace);
           
-          postListing(parsedPlace).then((d) => console.log("then posted place", d))
+          // postListing(parsedPlace).then((d) => console.log("then posted place", d))
+          parsedData_2(place).then((d) => console.log("then posted place", d))
           console.log("index", i);
           break;
         }

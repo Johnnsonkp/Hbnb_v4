@@ -35,7 +35,7 @@
 .landing-img{
   position: absolute;
   width: 100%;
-  background-color: lightgray;
+  background-color: #EBEBEB;
 }
 
 @keyframes slideFadeIn {

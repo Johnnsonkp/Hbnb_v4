@@ -188,7 +188,7 @@ function CreateListing() {
       formData.append('deeplink', '');
       // formData.append('host_thumbnail', testThumbnail);
       formData.append('host_thumbnail', '');
-      formData.append('rating', 5);
+      formData.append('rating', 0);
       formData.append('super_host', false);
   
       // Append each file separately
@@ -197,6 +197,8 @@ function CreateListing() {
       });
   
       try {
+        console.log("formData", formData)
+
         // const response = await fetch('http://127.0.0.1:5000/api/v1/places', {
         const response = await fetch(`https://hbnbv4-production.up.railway.app/api/v1/places`, {
           method: 'POST',
@@ -228,8 +230,8 @@ function CreateListing() {
     }
   }
   
-  console.log("files", files)
-  console.log("filesURL", filesURL)
+  // console.log("files", files)
+  // console.log("filesURL", filesURL)
   console.log("userState id:", userState?.user?.id)
   
   return (
