@@ -205,7 +205,7 @@ class PlaceList(Resource):
 
         # return result
 
-        def get_airbnb_api_data(location='australia', checkin='2025-09-12', checkout='2025-10-13', adults=1, children=0, infants=0):
+        def get_airbnb_api_data():
             conn = http.client.HTTPSConnection("airbnb13.p.rapidapi.com")
 
             print(f"env var {os.getenv('RAPID_API_KEY')}")
@@ -215,7 +215,7 @@ class PlaceList(Resource):
                 'x-rapidapi-host': "airbnb13.p.rapidapi.com"
             }
 
-            conn.request("GET", f"/search-location?location={location}&checkin={checkin}&checkout={checkout}&adults={adults}&children={children}&infants={infants}&pets=0&page=1&currency=AUD", headers=headers)
+            conn.request("GET", f"/search-location?location=newyork&checkin=2025-09-12&checkout=2025-10-13&adults=1&children=0&infants=0&pets=0&page=1&currency=AUD", headers=headers)
 
             res = conn.getresponse()
             data = res.read()
@@ -225,7 +225,7 @@ class PlaceList(Resource):
 
 
         location = "NewYork"
-        created_places = get_airbnb_api_data(location)
+        created_places = get_airbnb_api_data()
 
         if(created_places):
             for index, place in enumerate(created_places):
