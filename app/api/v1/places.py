@@ -85,6 +85,10 @@ class PlaceList(Resource):
         user = facade.get_user(str(owner_id))
         if not user:
             return { 'error': "Invalid input data - user does not exist" }, 400
+        
+        all_places = facade.get_all_places()
+        if any(place.title == title for place in all_places):
+            return { 'error': "Listing already exists" }, 400
 
         # the try catch is here in case setter validation fails
         # new_place = None
