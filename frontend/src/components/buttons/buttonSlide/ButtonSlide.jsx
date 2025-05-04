@@ -123,6 +123,9 @@ function ButtonSlide({titles, onClick, activeTab, handleSubmit}) {
     
     if(formData){
       const postListing = async (parsedPlace) => {
+        console.log(`post listing: ${window.location.origin}` )
+        console.log(`post listing parsedPlace: ${parsedPlace}` )
+
         try {
           const response = await fetch(`${window.location.origin}/api/v1/places`, {
             method: 'POST',
@@ -146,25 +149,45 @@ function ButtonSlide({titles, onClick, activeTab, handleSubmit}) {
       console.log(randomNumber);
 
       // postListing().then((data) => console.log("created listing", data))
-      getListings()
-      .then((data) => {
+      // getListings()
+      // .then((data) => {
         
-        for (let i = 0; i < placeState.placeListings.length; i++) {
-          const place = placeState.placeListings[i];
+      //   for (let i = 0; i < placeState.placeListings.length; i++) {
+      //     const place = placeState.placeListings[i];
 
-          if (!data.some(listing => listing.title === place.title) && place.latitude !== undefined) {
-            console.log("place.title", place.title);
-            place.description == null? (place.description = place.title) : place.description
+      //     if (!data.some(listing => listing.title === place.title) && place.latitude !== undefined) {
+      //       console.log("place.title", place.title);
+      //       place.description == null? (place.description = place.title) : place.description
 
-            const parsedPlace = transformPlace(place, ids[randomNumber])
-            console.log("parsedPlace", parsedPlace);
+      //       const parsedPlace = transformPlace(place, ids[randomNumber])
+      //       console.log("parsedPlace", parsedPlace);
             
-            postListing(parsedPlace).then((d) => console.log("then posted place", d))
-            console.log("index", i);
-            break;
-          }
+      //       postListing(parsedPlace).then((d) => console.log("then posted place", d))
+      //       console.log("index", i);
+      //       break;
+      //     }
+      //   }
+      // })
+
+
+      for (let i = 0; i < placeState.placeListings.length; i++) {
+        const place = placeState.placeListings[i];
+
+        // if (!data.some(listing => listing.title === place.title) && place.latitude !== undefined) {
+          console.log("place.title", place.title);
+        if( place.type !== undefined){ 
+          
+          place.description == null? (place.description = place.title) : place.description
+
+          const parsedPlace = transformPlace(place, ids[randomNumber])
+          console.log("parsedPlace", parsedPlace);
+          
+          postListing(parsedPlace).then((d) => console.log("then posted place", d))
+          console.log("index", i);
+          break;
         }
-      })
+      }
+
     }
   }
 
