@@ -26,9 +26,16 @@
   opacity: 0;
   transform: translateY(20px);
   animation: slideFadeIn 0.6s ease forwards;
-  background-image: url('/static/images/overhead-map.jpg');
+  background-color: lightgray;
+  /* background-image: url('/static/images/overhead-map.jpg'); */
   background-size: cover;
   max-height: 650px;
+}
+
+.landing-img{
+  position: absolute;
+  width: 100%;
+  background-color: lightgray;
 }
 
 @keyframes slideFadeIn {

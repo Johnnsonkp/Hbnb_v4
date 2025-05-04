@@ -23,7 +23,7 @@ function ButtonSlide({titles, onClick, activeTab, handleSubmit}) {
       longitude: place.longitude || 0,
       description: place.description,
       price: place.price || 100,
-      owner_id: owner_id || ownerID,
+      owner_id: ownerID,
       url: place.url,
       deeplink: place.deeplink,
       bathrooms: place.bathrooms || 1,
@@ -124,7 +124,7 @@ function ButtonSlide({titles, onClick, activeTab, handleSubmit}) {
     if(formData){
       const postListing = async (parsedPlace) => {
         console.log(`post listing: ${window.location.origin}` )
-        console.log(`post listing parsedPlace: ${parsedPlace}` )
+        console.log(`post listing parsedPlace: ${JSON.stringify(parsedPlace)}` )
 
         try {
           // const response = await fetch(`${window.location.origin}/api/v1/places`, {

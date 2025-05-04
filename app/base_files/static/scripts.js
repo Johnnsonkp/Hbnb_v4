@@ -35,6 +35,9 @@ function handleUserAuth(){
     getUserInfo()
       .then((data) => {
         if(data.first_name){
+          let option_1 = document.querySelector('.option-1')
+          let option_2 = document.querySelector('.option-2')
+
           dropDown.classList.add('auth-badge')
           dropDown.innerHTML = `<div class="inner-badge-div">${data.first_name[0]}</div>`
 
@@ -43,6 +46,21 @@ function handleUserAuth(){
             ${data.first_name} ${data.last_name} 
             ${data.email}
           </div>`
+          
+          option_1.href = '/dashboard'
+          option_1.innerHTML = `
+            <span class="item">
+              <img class="login-image" src="/static/images/sign-up-48.png" />
+              Dashboard
+            </span>
+          `
+          option_2.href = '/listings'
+          option_2.innerHTML = `
+            <span class="item">
+              <img class="login-image" src="/static/images/sign-up-48.png" />
+              Listings
+            </span>
+          `
 
         }else{
           console.log("isUserAuth", data.msg)
