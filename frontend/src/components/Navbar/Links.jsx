@@ -22,7 +22,8 @@ function Links() {
   const getUserInfo = async () => {
     try {
       // const response = await fetch('http://127.0.0.1:5000/api/v1/users/current_user', {
-      const response = await fetch(`${BASE_URL}/${API}/${USERS_PATH}/${current_user_path}`, {
+      // const response = await fetch(`${BASE_URL}/${API}/${USERS_PATH}/${current_user_path}`, {
+      const response = await fetch(`${window.location.origin}/${API}/${USERS_PATH}/${current_user_path}`, {
         method: 'GET',
         credentials: 'include',
         headers: {

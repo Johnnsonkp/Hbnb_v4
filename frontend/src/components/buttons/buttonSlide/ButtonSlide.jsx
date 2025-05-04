@@ -54,7 +54,8 @@ function ButtonSlide({titles, onClick, activeTab, handleSubmit}) {
 
     const getListings = async () => {
       try {
-        const response = await fetch(`${window.location.origin}/api/v1/places`, {
+        // const response = await fetch(`${window.location.origin}/api/v1/places`, {
+        const response = await fetch(`http://127.0.0.1:5000/api/v1/places`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -192,13 +193,14 @@ function ButtonSlide({titles, onClick, activeTab, handleSubmit}) {
           </div>
         ))}
       </div>
-      {/* <button style={{height: '40px', fontSize: '14px'}} onClick={() => handleListingCreation()}>Create place</button> */}
-        <button 
-          style={{height: '40px', fontSize: '14px', minWidth: '90px'}} 
-          onClick={() => initiateListingCreation()}
-        >
-          {loading? <LoadSpinner /> : "Create place"}
-        </button>
+      <button style={{height: '40px', fontSize: '14px'}} onClick={() => handleListingCreation()}>Post to databse</button>
+      
+      <button 
+        style={{height: '40px', fontSize: '14px', minWidth: '90px'}} 
+        onClick={() => initiateListingCreation()}
+      >
+        {loading? <LoadSpinner /> : "Create place"}
+      </button>
     </div>
   )
 }
