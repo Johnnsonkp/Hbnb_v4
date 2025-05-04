@@ -20,8 +20,10 @@ def create_app(config_class="config.DevelopmentConfig"):
     # app = Flask(__name__, static_folder='static/react', static_url_path='/static')
 
     # CORS(app)
+    # https://hbnbv4-production.up.railway.app
+    CORS(app, origins='https://hbnbv4-production.up.railway.app', supports_credentials=True)
     # CORS(app, origins='http://localhost:5173/', supports_credentials=True)
-    CORS(app, supports_credentials=True)
+    # CORS(app, supports_credentials=True)
     # CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 
     # Load configuration from the specified config class

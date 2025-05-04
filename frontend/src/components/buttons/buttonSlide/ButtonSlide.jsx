@@ -62,7 +62,7 @@ function ButtonSlide({titles, onClick, activeTab, handleSubmit}) {
             'Accept': 'application/json',
           },
           mode: 'cors',
-          credentials: 'include',
+          // credentials: 'include',
         });
         const data = await response.json();
         return data
