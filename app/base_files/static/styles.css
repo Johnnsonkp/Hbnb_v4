@@ -621,8 +621,8 @@ button:hover {
 }
 
 .sponsor-container {
-  padding-top: 10px;
-  padding-bottom: 40px;
+  /* padding-top: 10px; */
+  /* padding-bottom: 40px; */
   max-width: 80rem;
   margin: auto;
   display: flex;
