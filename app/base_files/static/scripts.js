@@ -138,6 +138,9 @@ function getPlacesData(){
   const filterContainer = document.getElementsByClassName('sponsor-container');
   let a = document.createElement('a');
   if (filterContainer){
+
+    console.log(`landing page URLs:, ${window.location.origin}/api/v1/places/all}`)
+
     fetch(`${window.location.origin}/api/v1/places/all`)
       .then(res => res.json())
       .then(res => {
