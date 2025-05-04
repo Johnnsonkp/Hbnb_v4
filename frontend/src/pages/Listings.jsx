@@ -34,7 +34,7 @@ function Listings() {
   const API = import.meta.env.VITE_API_PATH
   const places_path = import.meta.env.VITE_PLACES_PATH
   
-
+  console.log(`Listings URL:, ${BASE_URL}/${API}/${places_path}`)
   const getListingfromTxt = async () => {
     try {
       // fetch(`http://127.0.0.1:5000/api/v1/places/search`, {
