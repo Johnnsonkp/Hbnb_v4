@@ -192,13 +192,13 @@ function ButtonSlide({titles, onClick, activeTab, handleSubmit}) {
           </div>
         ))}
       </div>
-      <button style={{height: '40px', fontSize: '14px'}} onClick={() => handleListingCreation()}>Create place</button>
-        {/* <button 
+      {/* <button style={{height: '40px', fontSize: '14px'}} onClick={() => handleListingCreation()}>Create place</button> */}
+        <button 
           style={{height: '40px', fontSize: '14px', minWidth: '90px'}} 
           onClick={() => initiateListingCreation()}
         >
           {loading? <LoadSpinner /> : "Create place"}
-        </button> */}
+        </button>
     </div>
   )
 }
