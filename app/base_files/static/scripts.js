@@ -157,7 +157,7 @@ function getPlacesData(){
   let a = document.createElement('a');
   if (filterContainer){
 
-    console.log(`landing page URLs:, ${window.location.origin}/api/v1/places/all}`)
+    console.log(`landing page URLs:, ${window.location.origin}/api/v1/places/all`)
 
     fetch(`${window.location.origin}/api/v1/places/all`)
       .then(res => res.json())
@@ -167,6 +167,7 @@ function getPlacesData(){
         let city_res = res
 
         loadRadialPoints(res)
+        console.log("res", res)
         res.filter((listing_1) => !arr.includes(listing_1.property_type) && arr.push(listing_1.property_type))
         city_res.filter((listing_1) => !city_arr.includes(listing_1.city) && city_arr.push(listing_1.city))
 
