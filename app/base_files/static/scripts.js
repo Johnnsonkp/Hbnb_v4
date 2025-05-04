@@ -175,6 +175,7 @@ function getPlacesData(){
         for(let i = 0; i < arr.length; i++){
           if(arr[i] !== null){
             let a = document.createElement('a');
+            let btn = document.createElement('button')
 
             const params = new URLSearchParams({
               category: arr[i],
@@ -193,7 +194,9 @@ function getPlacesData(){
             a.style.fontSize = '14px'
             a.href = url
             a.innerHTML = arr[i]
-            filterContainer[0].appendChild(a);
+            // filterContainer[0].appendChild(a);
+            btn.appendChild(a)
+            filterContainer[0].appendChild(btn);
             // trustContainer.appendChild(a)
           }
         }
