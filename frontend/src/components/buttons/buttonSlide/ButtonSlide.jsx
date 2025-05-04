@@ -66,11 +66,6 @@ function ButtonSlide({titles, onClick, activeTab, handleSubmit}) {
       formData.append('super_host', false);
       formData.append('images', place.img);
 
-      // Append each file separately
-      // place.img.forEach((file, index) => {
-      //   formData.append('images', file);
-      // });
-
       try {
         console.log("formData", formData)
 
@@ -215,16 +210,32 @@ function ButtonSlide({titles, onClick, activeTab, handleSubmit}) {
         if( place.type !== undefined){ 
           
           place.description == null? (place.description = place.title) : place.description
-          // const parsedPlace = transformPlace(place, ids[randomNumber])
-          // console.log("parsedPlace", parsedPlace);
-          
-          // postListing(parsedPlace).then((d) => console.log("then posted place", d))
           parsedData_2(place).then((d) => console.log("then posted place", d))
           console.log("index", i);
           break;
         }
       }
 
+    }
+  }
+
+  const addAPIData = async () => {
+    try {
+      const response = await fetch("https://hbnbv4-production.up.railway.app/api/v1/places/search", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        mode: 'cors',
+        credentials: 'include',
+        body: JSON.stringify(titles)
+      });
+      const data = await response.json();
+      return data
+
+    } catch (error) {
+      console.error('Failed to fetch listings:', error);
     }
   }
 
@@ -253,6 +264,14 @@ function ButtonSlide({titles, onClick, activeTab, handleSubmit}) {
           </div>
         ))}
       </div>
+
+      <button 
+        style={{height: '40px', fontSize: '14px', minWidth: '90px'}} 
+        onClick={() => addAPIData()}
+      >
+        {loading? <LoadSpinner /> : "Add place from API"}
+      </button>
+
       <button style={{height: '40px', fontSize: '14px'}} onClick={() => handleListingCreation()}>Post to databse</button>
       
       <button 

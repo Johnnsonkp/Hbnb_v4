@@ -48,6 +48,7 @@ place_model = api.model('Place', {
 
 # facade = HBnBFacade()
 
+
 # @api.route('/', methods=['GET', 'POST', 'OPTIONS'])
 @api.route('/', methods=['GET', 'POST', 'OPTIONS'])
 class PlaceList(Resource):
@@ -195,13 +196,48 @@ class PlaceList(Resource):
     @api.expect(place_model)
     @api.response(200, 'List of places retrieved successfully')
     def post(self):
-        searchParams = api.payload 
-        location = searchParams['market']
+        # searchParams = api.payload 
+        # location = searchParams['market']
 
-        result = facade.get_airbnb_api_data(location)
-        print(location)
+        # result = facade.get_airbnb_api_data(location)
+        # print(location)
 
-        return result
+        # return result
+        location = "New York"
+        created_places = facade.get_airbnb_api_data(location)
+
+        if(created_places):
+            for index, place in enumerate(created_places):
+                if (index > 25):
+                    return
+
+                print(f"created_places {created_places}")
+                print(f"place {place}")
+
+                place_data = {
+                    'title': place['title'],
+                    'price': place['price']['rate'],
+                    'address': place['address'],
+                    'city': place['city'],
+                    'property_type': place['property_type'],
+                    'description': place['description'],
+                    'bedrooms': place['bedrooms'],
+                    'beds': place['beds'],
+                    'bathrooms': place['bathrooms'],
+                    'owner_id': place['owner_id'],
+                    'latitude': place['latitude'],
+                    'longitude': place['longitude'],
+                    'url': place['url'],
+                    'deeplink': place['deeplink'],
+                    'host_thumbnail': place['host_thumbnail'],
+                    'rating': place['rating'],
+                    'super_host': place['super_host'],
+                    'images': place['images']
+                }
+
+                print(f"place_data {place_data}")
+                
+                # new_place = facade.create_place(place_data) 
 
 
     @api.response(200, 'List of places retrieved successfully')

@@ -130,7 +130,7 @@ async function loadRadialPoints(res){
 
   for (let i = 0; i < res.length; i++) {
     let div = document.createElement('a');
-    div.href = `${origin}/place/${res[i].id}` 
+    div.href = `${origin}/api/v1/place/${res[i].id}` 
 
     div.classList.add("radial-pin");
     div.innerHTML = `<svg class="" fill="currentColor"
