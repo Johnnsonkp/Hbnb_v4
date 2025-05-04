@@ -193,7 +193,8 @@ function getPlacesData(){
             a.style.fontWeight = '600'
             a.style.fontSize = '14px'
             a.href = url
-            a.innerHTML = arr[i]
+            // a.innerHTML = arr[i]
+            a.innerText = arr[i]
             // filterContainer[0].appendChild(a);
             btn.appendChild(a)
             filterContainer[0].appendChild(btn);
