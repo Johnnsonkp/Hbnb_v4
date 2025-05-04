@@ -28,36 +28,31 @@
                 <img src="static/images/logo-nav.png" />
               </a>
             </div>
-            <div class="search-box">
-              <div class="search-box-inner">
-                <input type="text" placeholder="Location" class="input-field text" />
-                <select class="select-input-field input-field" value="">
-                  <option value="">Property type</option>
-                  <option value="house">House</option>
-                  <option value="apartment">Apartment</option>
-                  <option value="condo">Condo</option>
-                </select>
-                <!-- <select class="date-picker-container input-field"> -->
-                <!-- <select class="input-field"> -->
-                <input id="datepicker" class="date-input input-field"" type="text" placeholder="Check in">
-                <input id="datepicker" class="date-input input-field"" type="text" placeholder="Check out">
-                <!-- </select> -->
-                <button class="search-button">
-                  <span className="dropdown-icon"></span>
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                      stroke-width="1.5" stroke="currentColor" class="icon">
-                  <path stroke-linecap="round" stroke-linejoin="round"
-                        d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607z" />
-                  </svg>
-                </button>
+              <div class="search-box">
+                <div class="search-box-inner">
+                  <input type="text" placeholder="Location" class="input-field text" />
+                  <select class="select-input-field input-field" value="">
+                    <option value="">Property type</option>
+                    <option value="house">House</option>
+                    <option value="apartment">Apartment</option>
+                    <option value="condo">Condo</option>
+                  </select>
+                  <input id="datepicker" class="date-input input-field"" type="text" placeholder="Check in">
+                  <input id="datepicker" class="date-input input-field"" type="text" placeholder="Check out">
+                  <!-- </select> -->
+                  <button class="search-button">
+                    <span className="dropdown-icon"></span>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke="currentColor" class="icon">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607z" />
+                    </svg>
+                  </button>
+                </div>
               </div>
-            </div>
 
               <ul class="nav-links">
-                <!-- <li><a href="/listings">About</a></li> -->
-                <!-- <li><a href="/listings">Listings</a></li> -->
                 <li class="card">
-                  
                   <div class="dropdown-container">
                     <div class="group">
                       <button type="button" class="dropdown-button">
@@ -78,7 +73,6 @@
                               Sign up
                             </span>
                           </a>
-                          
                           <a href="/auth/login" class="dropdown-option">
                             <span class="item">
                               <img class="login-image" src="/static/images/login-50.png" />
@@ -91,10 +85,10 @@
                   </div>
                 </li>
               </ul>
-          </nav>
+            </nav>
         </header>
         
-        <div class="container">
+        <div class="radial-container">
           <div class="rotating bg-circularLight">
             <div class="radial-point"></div>
           </div>
@@ -128,24 +122,31 @@
           </div>
         </div>
 
-      <div class="sponsor-section">
+      <!-- <div class="sponsor-section">
         <div class="sponsor-container"></div>
-      </div>
+      </div> -->
 
-      <main class="sponsor-section">
+      <!-- <main class="popular-destination-section">
         <div class="citi-div">
           <h1>Discover our popular destinations</h1>
-          <!-- <p>Airhostswap will soon be present in 190+ countries and regions.</p> -->
         </div>
         <div id="cities"></div>
-      </main>
+      </main> -->
     </div>
+
+    <div class="sponsor-section">
+      <div class="sponsor-container"></div>
+    </div>
+
+    <main class="popular-destination-section">
+      <div class="citi-div">
+        <h1>Discover our popular destinations</h1>
+      </div>
+      <div id="cities"></div>
+    </main>
 
       <script src="static/scripts.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-      <script>
-          flatpickr("#datepicker", {
-          });
-      </script>
+      <script>flatpickr("#datepicker", {});</script>
   </body>
 </html>

@@ -6,10 +6,12 @@ from flask import Flask, render_template
 from flask_jwt_extended import JWTManager
 from flask import Flask
 from flask_cors import CORS
+from flask_bcrypt import Bcrypt
 import cloudinary
 
 jwt = JWTManager()
 db = SQLAlchemy()
+bcrypt = Bcrypt()
 
 def create_app(config_class="config.DevelopmentConfig"):
     """ method used to create an app instance """
@@ -19,8 +21,8 @@ def create_app(config_class="config.DevelopmentConfig"):
 
     # CORS(app)
     # CORS(app, origins='http://localhost:5173/', supports_credentials=True)
-    # CORS(app, supports_credentials=True)
-    CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
+    CORS(app, supports_credentials=True)
+    # CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
 
     # Load configuration from the specified config class
     app.config.from_object(config_class)
@@ -45,6 +47,7 @@ def create_app(config_class="config.DevelopmentConfig"):
     # Initialize the database with the app
     db.init_app(app)
     jwt.init_app(app)
+    bcrypt.init_app(app)
 
     # Initialize Flask-Migrate for handling database migrations
     migrate = Migrate(app, db)

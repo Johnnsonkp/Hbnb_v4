@@ -4,6 +4,7 @@ from app.services import facade
 from flask import Flask, render_template
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask_jwt_extended import get_jwt
+from flask_jwt_extended import create_access_token
 
 api = Namespace('users', description='User operations')
 
@@ -14,7 +15,6 @@ user_model = api.model('User', {
     'email': fields.String(required=True, description='Email of the user')
 })
 
-# facade = HBnBFacade()
 
 @api.route('/')
 class UserList(Resource):
@@ -24,8 +24,6 @@ class UserList(Resource):
     @api.response(400, 'Invalid input data')
     @api.response(400, 'Setter validation failure')
     def post(self):
-        # curl -X POST "http://127.0.0.1:5000/api/v1/users/" -H "Content-Type: application/json" -d '{"first_name": "John","last_name": "Doe","email": "john.doe@example.com"}'
-
         """Register a new user"""
         user_data = api.payload
 
@@ -40,15 +38,19 @@ class UserList(Resource):
         if not all([user_data.get('first_name'), user_data.get('last_name'), user_data.get('password'), user_data.get('email')]):
             return {'error': 'Invalid input data'}, 400
 
-        # the try catch is here in case setter validation fails
-        new_user = None
-        
         try:
             new_user = facade.create_user(user_data)
+
+            # Step 3: Create a JWT token with the user's id and is_admin flag
+            access_token = create_access_token(identity=str(new_user.id), additional_claims={"is_admin": new_user.is_admin})
+
+            # Step 4: Return the JWT token to the client
+            return {'access_token': access_token}, 200
+        
         except ValueError as error:
             return { 'error': "Setter validation failure: {}".format(error) }, 400
 
-        return {'id': str(new_user.id), 'message': 'User created successfully'}, 201
+        # return {'id': str(new_user.id), 'message': 'User created successfully'}, 201
 
     @api.response(200, 'Users list successfully retrieved')
     def get(self):

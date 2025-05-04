@@ -175,7 +175,7 @@
               <div class="line"></div>
             </div> -->
     
-            <form class="auth-form" id="signupForm" method="POST" action="/submit">
+            <form class="auth-form" id="signupForm">
               <div>
                 <label for="email">Your email</label>
                 <input type="email" id="email" name="login" placeholder="john-smith@company.com" required>
@@ -212,13 +212,150 @@
       </div>
     </section>
 
-    <script src="static/signup.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- <script src="static/signup.js"></script> -->
     <script>
-        flatpickr("#datepicker", {
-            // Configuration options for Flatpickr
-            // You can customize the appearance and behavior here
-        });
+
+      let submitBtn = document.querySelector('.submit-btn')
+      document.getElementById('signupForm').addEventListener('submit', handleSubmit);
+
+      async function handleSubmit(event) {
+        event.preventDefault();
+        const loadSpinner = `<div class="loader"></div>`;
+        submitBtn.innerHTML = ""
+        submitBtn.innerHTML = loadSpinner
+        submitBtn.classList.add("loading")
+        const form = event.target;
+        const base_url = window.location.origin
+
+        // await fetch(`${base_url}/api/v1/users/`, {
+        await fetch(`${base_url}/api/v1/auth/sign-up`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+          },
+          body: JSON.stringify({
+            first_name: form.first_name.value,
+            last_name: form.last_name.value,
+            email: form.email.value,
+            password: form.password.value
+          })
+        })
+          .then(res => res.json())
+          .then(data => {
+            handleStatus(data)
+
+            if (data.access_token) {
+              console.log('Success:', data);
+              saveJWTToken(data.access_token)
+              handleNavigate(data.access_token)
+            }
+          })
+          .catch(error => console.error('Error:', error));
+      }
+
+      const callback = async (token) => {
+        console.log("callback", token)
+        const base_url = window.location.origin
+
+        try {
+          return fetch(`${base_url}/api/v1/auth/callback`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({token: token}),
+            credentials: 'include'
+          })
+          .then(response => response.json())
+          .then(data => {
+            if (data.redirect) {
+              window.location.href = data.redirect;
+            }
+          })
+
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      }
+
+      function handleNavigate(token){
+        setTimeout(() => {
+          submitBtn.innerHTML = "Sign up"
+          callback(token)
+          // window.location.href = "/listings";
+        }, [3000])
+      }
+
+      function saveJWTToken(token) {
+        if (token) {
+          localStorage.setItem('local_events_jwt', token);
+        } else {
+          console.warn("No token provided to save.");
+        }
+      }
+
+      function handleStatus(response){
+        let statusBar = document.getElementById("status-bar")
+        let successBar = document.getElementById("success-bar")
+        let errorBar = document.getElementById("error-bar")
+        let fixedNav = document.querySelector('.header-container')
+        let successTxt = document.querySelector(".success-text")
+        let errorTxt = document.querySelector(".error-text")
+
+        function addDelay(statusBar){
+          setTimeout(() => {
+            statusBar.style.display = "none"
+            statusBar.style.position = "static"
+            statusBar.style.zIndex = 0
+          }, 3000);
+        }
+
+        const handleLoginSuccess = () => {
+          successBar.style.display = "block"
+          successBar.style.position = "relative"
+          successBar.style.zIndex = 9999999999
+          fixedNav.style.zIndex = 0
+
+          if(successBar){
+            successTxt.innerHTML = "User successfully signed up"
+            addDelay(successBar)
+          }
+        }
+
+        const handleLoginError = () => {
+          errorBar.style.display = "block"
+          errorBar.style.position = "relative"
+          errorBar.style.zIndex = 9999999999
+          fixedNav.style.zIndex = 0
+
+          if(errorBar){
+            errorTxt.innerHTML = response.error
+            addDelay(errorBar)
+          }
+        }
+
+        if(response.access_token){
+          handleLoginSuccess()
+        }
+        else{
+          handleLoginError()
+        }
+
+        setTimeout(() => {
+          fixedNav.style.zIndex = 9999999999
+          submitBtn.innerHTML = "Sign in"
+          submitBtn.classList.remove("loading")
+          successTxt.innerHTML = ""
+          errorTxt.innerHTML = ""
+        }, 3000);
+      }
     </script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        flatpickr("#datepicker", {});
+    </script> -->
   </body>
 </html>

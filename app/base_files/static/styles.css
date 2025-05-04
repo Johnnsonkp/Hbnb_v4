@@ -762,6 +762,16 @@ button:hover {
   overflow: hidden;
 }
 
+.radial-container {
+  display: flex;
+  height: 90vh;
+  max-height: 650px;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
 .inner-wrapper {
   /* margin-top: 2.5rem; */
   padding: 0rem 1rem;
@@ -936,6 +946,16 @@ button:hover {
   justify-content: space-between;
   text-align: left;
   font-size: 12px;
+}
+
+.popular-destination-section {
+  padding: 1rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  z-index: 9999;
+  min-height: 40vh;
+  background-color: #fff;
 }
 
 .cities-card{

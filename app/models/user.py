@@ -5,10 +5,11 @@ import re
 from datetime import datetime
 from flask_bcrypt import Bcrypt
 from app import db
+from app import bcrypt
 from sqlalchemy.orm import validates
 
 
-bcrypt = Bcrypt()
+# bcrypt = Bcrypt()
 
 
 class User(db.Model):
@@ -60,6 +61,12 @@ class User(db.Model):
 
     def verify_password(self, password):
         """Verifies if the provided password matches the hashed password."""
+
+        print(f"Password from DB: {self.password}")
+        print(f"[DEBUG] input password: {password}")
+
+        if not self.password:
+            raise ValueError("Password hash is missing from user record.")
         return bcrypt.check_password_hash(self.password, password)
 
 
