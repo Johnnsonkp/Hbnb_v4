@@ -58,27 +58,6 @@ function Listings() {
     }
   };
 
-  // const allPlaces = async () => {
-  //   try {
-  //     // const response = await fetch('http://127.0.0.1:5000/api/v1/places/all', {
-  //     const response = await fetch('http://127.0.0.1:5000/api/v1/places/', {
-  //       method: 'GET',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         'Accept': 'application/json',
-  //         // 'Authorization': `Bearer ${accessToken}`
-  //       },
-  //       mode: 'cors',
-  //       // credentials: 'include',
-  //     });
-
-  //     const data = await response.json();
-  //     return data
-  //   } catch (error) {
-  //     console.error('Failed to fetch listings:', error);
-  //   }
-  // };
-
   const allPlaces = async () => {
     try {
       // const response = await fetch(`${BASE_URL}/${API}/${places_path}`, {

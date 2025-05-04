@@ -42,49 +42,54 @@ function ButtonSlide({titles, onClick, activeTab, handleSubmit}) {
   }
 
   const parsedData_2 = async (place) => {
-    const formData = new FormData();
+    console.log("parsedData_2 place", place)
+    
+    if (place.length){
+      const formData = new FormData();
 
-    formData.append('title', place.title.slice(0, 90));
-    formData.append('address', place.address);
-    formData.append('description', place.description || "");
-    formData.append('price', place.price);
-    formData.append('bathrooms', place.bathrooms);
-    formData.append('bedrooms', place.bedrooms);
-    formData.append('beds', place.beds);
-    formData.append('city', place.city);
-    formData.append('property_type', place.type);
-    formData.append('latitude', place.latitude || 0);
-    formData.append('longitude', place.longitude || 0);
-    formData.append('owner_id', userState?.user?.id);
-    formData.append('url', place.url || '');
-    formData.append('deeplink', place.deeplink || '');
-    formData.append('host_thumbnail', place.hostThumbnail || testThumbnail);
-    formData.append('rating', place.rating || 0);
-    formData.append('super_host', false);
+      formData.append('title', place.title.slice(0, 90));
+      formData.append('address', place.address);
+      formData.append('description', place.description || "");
+      formData.append('price', place.price);
+      formData.append('bathrooms', place.bathrooms);
+      formData.append('bedrooms', place.bedrooms);
+      formData.append('beds', place.beds);
+      formData.append('city', place.city);
+      formData.append('property_type', place.type);
+      formData.append('latitude', place.latitude || 0);
+      formData.append('longitude', place.longitude || 0);
+      formData.append('owner_id', userState?.user?.id);
+      formData.append('url', place.url || '');
+      formData.append('deeplink', place.deeplink || '');
+      formData.append('host_thumbnail', place.hostThumbnail || testThumbnail);
+      formData.append('rating', place.rating || 0);
+      formData.append('super_host', false);
 
-    // Append each file separately
-    place.img.forEach((file, index) => {
-      formData.append('images', file);
-    });
-
-    try {
-      console.log("formData", formData)
-
-      const response = await fetch(`https://hbnbv4-production.up.railway.app/api/v1/places`, {
-        method: 'POST',
-        headers: {
-          // 'Content-Type': 'application/json',
-          // 'Accept': 'application/json',
-        },
-        mode: 'cors',
-        credentials: 'include',
-        body: formData, 
+      // Append each file separately
+      place.img.forEach((file, index) => {
+        formData.append('images', file);
       });
 
-      const data = await response.json();
-      console.log("Listing created", data);
-    } catch (error) {
-      console.error('Error posting listing:', error);
+      try {
+        console.log("formData", formData)
+
+        const response = await fetch(`https://hbnbv4-production.up.railway.app/api/v1/places`, {
+          method: 'POST',
+          headers: {
+            // 'Content-Type': 'application/json',
+            // 'Accept': 'application/json',
+          },
+          mode: 'cors',
+          credentials: 'include',
+          body: formData, 
+        });
+
+        const data = await response.json();
+        console.log("Listing created", data);
+      } catch (error) {
+        console.error('Error posting listing:', error);
+      }
+
     }
   }
 
