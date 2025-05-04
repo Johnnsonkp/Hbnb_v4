@@ -154,6 +154,7 @@ async function loadRadialPoints(res){
 
 function getPlacesData(){
   const filterContainer = document.getElementsByClassName('sponsor-container');
+  const trustContainer = document.querySelector('sponsor-section')
   let a = document.createElement('a');
   if (filterContainer){
 
@@ -193,6 +194,7 @@ function getPlacesData(){
             a.href = url
             a.innerHTML = arr[i]
             filterContainer[0].appendChild(a);
+            // trustContainer.appendChild(a)
           }
         }
         addPropertyTypesToDropDown(arr)

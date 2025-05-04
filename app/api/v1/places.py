@@ -11,6 +11,7 @@ import requests
 from flask import request
 from datetime import datetime
 
+
 api = Namespace('places', description='Place operations')
 
 # Define the models for related entities
@@ -203,8 +204,28 @@ class PlaceList(Resource):
         # print(location)
 
         # return result
+
+        def get_airbnb_api_data(location='australia', checkin='2025-09-12', checkout='2025-10-13', adults=1, children=0, infants=0):
+            conn = http.client.HTTPSConnection("airbnb13.p.rapidapi.com")
+
+            print(f"env var {os.getenv('RAPID_API_KEY')}")
+
+            headers = {
+                'x-rapidapi-key': os.getenv('RAPID_API_KEY'),
+                'x-rapidapi-host': "airbnb13.p.rapidapi.com"
+            }
+
+            conn.request("GET", f"/search-location?location={location}&checkin={checkin}&checkout={checkout}&adults={adults}&children={children}&infants={infants}&pets=0&page=1&currency=AUD", headers=headers)
+
+            res = conn.getresponse()
+            data = res.read()
+            list_arr = []
+      
+            return json.loads(data.decode("utf-8"))
+
+
         location = "NewYork"
-        created_places = facade.get_airbnb_api_data(location)
+        created_places = get_airbnb_api_data(location)
 
         if(created_places):
             for index, place in enumerate(created_places):
