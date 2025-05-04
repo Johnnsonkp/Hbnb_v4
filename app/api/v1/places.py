@@ -203,7 +203,7 @@ class PlaceList(Resource):
         # print(location)
 
         # return result
-        location = "New York"
+        location = "NewYork"
         created_places = facade.get_airbnb_api_data(location)
 
         if(created_places):
