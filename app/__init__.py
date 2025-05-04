@@ -7,6 +7,7 @@ from flask_jwt_extended import JWTManager
 from flask import Flask
 from flask_cors import CORS
 from flask_bcrypt import Bcrypt
+from werkzeug.middleware.proxy_fix import ProxyFix
 import cloudinary
 
 jwt = JWTManager()
@@ -19,6 +20,9 @@ def create_app(config_class="config.DevelopmentConfig"):
     app = Flask(__name__, static_folder='base_files/static')
     # app = Flask(__name__, static_folder='static/react', static_url_path='/static')
 
+    # Add this line to trust Railway's proxy
+    app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
+  
     # CORS(app)
     # https://hbnbv4-production.up.railway.app
     CORS(app, origins='https://hbnbv4-production.up.railway.app', supports_credentials=True)

@@ -127,7 +127,8 @@ function ButtonSlide({titles, onClick, activeTab, handleSubmit}) {
         console.log(`post listing parsedPlace: ${parsedPlace}` )
 
         try {
-          const response = await fetch(`${window.location.origin}/api/v1/places`, {
+          // const response = await fetch(`${window.location.origin}/api/v1/places`, {
+          const response = await fetch("https://hbnbv4-production.up.railway.app/api/v1/places", {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
