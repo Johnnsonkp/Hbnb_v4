@@ -15,8 +15,8 @@ function ListingCard({id, title, url, address, amenities, latitude, longitude,  
   const {userState, userDispatch} = useContext(UserContext)
   const navigate = useNavigate();
 
-  console.log("userState", userState)
-  console.log("userState.user?.first_name !== ?", userState.user.first_name == "")
+  // console.log("userState", userState)
+  // console.log("userState.user?.first_name !== ?", userState.user.first_name == "")
   
   const handleClick = () => {
     const data = {id, title, url, address, amenities, latitude, longitude,  bathrooms, bedrooms, beds, type, userId, hostThumbnail, price, description, deeplink, superHost, rating, img, city}
