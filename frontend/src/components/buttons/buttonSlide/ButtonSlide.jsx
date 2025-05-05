@@ -35,7 +35,7 @@ function ButtonSlide({titles, onClick, activeTab, handleSubmit}) {
       images: place.img,
       host_thumbnail: place.hostThumbnail,
       super_host: place.superHost || false,
-      rating: place.rating || 5,
+      rating: place.rating || 0,
       property_type: place.type,
       address: place.address,
     };
@@ -66,25 +66,29 @@ function ButtonSlide({titles, onClick, activeTab, handleSubmit}) {
       formData.append('super_host', false);
       formData.append('images', place.img);
 
-      try {
-        console.log("formData", formData)
+      const placeParsed = transformPlace(place)
 
-        const response = await fetch(`https://hbnbv4-production.up.railway.app/api/v1/places`, {
-          method: 'POST',
-          headers: {
-            // 'Content-Type': 'application/json',
-            // 'Accept': 'application/json',
-          },
-          mode: 'cors',
-          credentials: 'include',
-          body: formData, 
-        });
+      console.log("placeParsed", placeParsed)
 
-        const data = await response.json();
-        console.log("Listing created", data);
-      } catch (error) {
-        console.error('Error posting listing:', error);
-      }
+      // try {
+      //   console.log("formData", formData)
+
+      //   const response = await fetch(`https://hbnbv4-production.up.railway.app/api/v1/places`, {
+      //     method: 'POST',
+      //     headers: {
+      //       // 'Content-Type': 'application/json',
+      //       // 'Accept': 'application/json',
+      //     },
+      //     mode: 'cors',
+      //     credentials: 'include',
+      //     body: formData, 
+      //   });
+
+      //   const data = await response.json();
+      //   console.log("Listing created", data);
+      // } catch (error) {
+      //   console.error('Error posting listing:', error);
+      // }
 
     }
   }
@@ -272,7 +276,7 @@ function ButtonSlide({titles, onClick, activeTab, handleSubmit}) {
         {loading? <LoadSpinner /> : "Add place from API"}
       </button> */}
 
-      {/* <button style={{height: '40px', fontSize: '14px'}} onClick={() => handleListingCreation()}>Post to databse</button> */}
+      <button style={{height: '40px', fontSize: '14px'}} onClick={() => handleListingCreation()}>Post to database</button>
       
       <button 
         style={{height: '40px', fontSize: '14px', minWidth: '90px'}} 
