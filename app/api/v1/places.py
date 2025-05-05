@@ -61,24 +61,24 @@ class PlaceList(Resource):
     @api.response(400, 'Setter validation failure')
     def post(self):
         """Register a new place"""
-        title = request.form.get('title')
-        price = request.form.get('price')
-        address = request.form.get('address')
-        city = request.form.get('city')
-        property_type = request.form.get('property_type')  # fixed
-        description = request.form.get('description')
-        bedrooms = request.form.get('bedrooms')
-        beds = request.form.get('beds')
-        bathrooms = request.form.get('bathrooms')
-        owner_id = request.form.get('owner_id')
-        latitude = request.form.get('latitude')
-        longitude = request.form.get('longitude')
-        url = request.form.get('url')
-        deeplink = request.form.get('deeplink')
-        host_thumbnail = request.form.get('host_thumbnail')
-        rating = request.form.get('rating')
-        super_host = request.form.get('super_host', 'false').lower() == 'true'
-        images = request.files.getlist('images')
+        # title = request.form.get('title')
+        # price = request.form.get('price')
+        # address = request.form.get('address')
+        # city = request.form.get('city')
+        # property_type = request.form.get('property_type')  # fixed
+        # description = request.form.get('description')
+        # bedrooms = request.form.get('bedrooms')
+        # beds = request.form.get('beds')
+        # bathrooms = request.form.get('bathrooms')
+        # owner_id = request.form.get('owner_id')
+        # latitude = request.form.get('latitude')
+        # longitude = request.form.get('longitude')
+        # url = request.form.get('url')
+        # deeplink = request.form.get('deeplink')
+        # host_thumbnail = request.form.get('host_thumbnail')
+        # rating = request.form.get('rating')
+        # super_host = request.form.get('super_host', 'false').lower() == 'true'
+        # images = request.files.getlist('images')
 
         # images = request.form.get('images')
 
@@ -106,20 +106,9 @@ class PlaceList(Resource):
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-        user = facade.get_user(str(owner_id))
-        if not user:
-            return { 'error': "Invalid input data - user does not exist" }, 400
+        # user = facade.get_user(str(owner_id))
+        # if not user:
+        #     return { 'error': "Invalid input data - user does not exist" }, 400
         
         # all_places = facade.get_all_places()
         # if any(place.title == title for place in all_places):
