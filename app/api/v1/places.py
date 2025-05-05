@@ -99,10 +99,10 @@ class PlaceList(Resource):
             'longitude': data['longitude'],
             'url': data['url'],
             'deeplink': data.get('deeplink', ''),
-            'host_thumbnail': data.get('hostThumbnail'),
+            'host_thumbnail': data.get('host_thumbnail'),
             'rating': data['rating'],
-            'super_host': data.get('superHost', False),
-            'images': data.get('img', []),
+            'super_host': data.get('super_host', False),
+            'images': data.get('images', []),
         }
 
 
