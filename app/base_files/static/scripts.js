@@ -196,7 +196,13 @@ function getPlacesData(){
             // a.innerHTML = arr[i]
             a.innerText = arr[i]
             // filterContainer[0].appendChild(a);
-            btn.appendChild(a)
+            // btn.appendChild(a)
+            btn.style.fontSize = '14px'
+            btn.style.border = '1px solid silver'
+            btn.style.backgroundColor = '#F4F4F4'
+            btn.style.color = '#333'
+            btn.innerText = arr[i]
+            btn.addEventListener('click', () => window.location.href = `${url}`)
             filterContainer[0].appendChild(btn);
             // trustContainer.appendChild(a)
           }
