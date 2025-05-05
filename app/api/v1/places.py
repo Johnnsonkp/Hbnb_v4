@@ -84,12 +84,14 @@ class PlaceList(Resource):
 
         data = request.get_json()
 
+        print(f"places backend {data}")
+
         place_data = {
             'title': data['title'],
             'price': int(data['price']),
             'address': data['address'],
             'city': data['city'],
-            'property_type': data['type'],
+            'property_type': data['property_type'],
             'description': data['description'],
             'bedrooms': data['bedrooms'],
             'beds': data['beds'],
@@ -148,32 +150,32 @@ class PlaceList(Resource):
         #     # 'images': images  
         # }
         
-        new_place = facade.create_place(place_data)
+        # new_place = facade.create_place(place_data)
 
-        output = {
-            "id": str(new_place.id),
-            "title": new_place.title,
-            "latitude": new_place.latitude,
-            "longitude": new_place.longitude,
-            "description": new_place.description,
-            "price": new_place.price,
-            "owner_id": str(new_place.owner_id),
-            "url": new_place.url,
-            "deeplink": new_place.deeplink,
-            "bathrooms": new_place.bathrooms,
-            "bedrooms": new_place.bedrooms,
-            "beds": new_place.beds,
-            "city": new_place.city,
-            "images": new_place.images,
-            "host_thumbnail": new_place.host_thumbnail,
-            "super_host": new_place.super_host,
-            "rating": new_place.rating,
-            "property_type": new_place.property_type,
-            "address": new_place.address,
-        }
+        # output = {
+        #     "id": str(new_place.id),
+        #     "title": new_place.title,
+        #     "latitude": new_place.latitude,
+        #     "longitude": new_place.longitude,
+        #     "description": new_place.description,
+        #     "price": new_place.price,
+        #     "owner_id": str(new_place.owner_id),
+        #     "url": new_place.url,
+        #     "deeplink": new_place.deeplink,
+        #     "bathrooms": new_place.bathrooms,
+        #     "bedrooms": new_place.bedrooms,
+        #     "beds": new_place.beds,
+        #     "city": new_place.city,
+        #     "images": new_place.images,
+        #     "host_thumbnail": new_place.host_thumbnail,
+        #     "super_host": new_place.super_host,
+        #     "rating": new_place.rating,
+        #     "property_type": new_place.property_type,
+        #     "address": new_place.address,
+        # }
 
-        print(f"Place created successfully: {output}")
-        return output, 201
+        # print(f"Place created successfully: {output}")
+        # return output, 201
     
 
     # @api.expect(place_model)
