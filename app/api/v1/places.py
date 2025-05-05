@@ -55,10 +55,10 @@ place_model = api.model('Place', {
 @api.route('/', methods=['GET', 'POST', 'OPTIONS'])
 class PlaceList(Resource):
 
-    @api.expect(place_model)
-    @api.response(201, 'Place successfully created')
-    @api.response(400, 'Invalid input data')
-    @api.response(400, 'Setter validation failure')
+    # @api.expect(place_model)
+    # @api.response(201, 'Place successfully created')
+    # @api.response(400, 'Invalid input data')
+    # @api.response(400, 'Setter validation failure')
     def post(self):
         """Register a new place"""
         # title = request.form.get('title')
