@@ -277,7 +277,7 @@ function ButtonSlide({titles, onClick, activeTab, handleSubmit}) {
         {loading? <LoadSpinner /> : "Add place from API"}
       </button> */}
 
-      <button style={{height: '40px', fontSize: '14px'}} onClick={() => handleListingCreation()}>Post to database</button>
+      {/* <button style={{height: '40px', fontSize: '14px'}} onClick={() => handleListingCreation()}>Post to database</button> */}
       
       <button 
         style={{height: '40px', fontSize: '14px', minWidth: '90px'}} 

@@ -10,7 +10,6 @@ import random
 import requests
 from flask import request
 from datetime import datetime
-import app
 
 
 api = Namespace('places', description='Place operations')
@@ -55,100 +54,100 @@ place_model = api.model('Place', {
 @api.route('/', methods=['GET', 'POST', 'OPTIONS'])
 class PlaceList(Resource):
 
-    # @api.expect(place_model)
-    # @api.response(201, 'Place successfully created')
-    # @api.response(400, 'Invalid input data')
-    # @api.response(400, 'Setter validation failure')
+    @api.expect(place_model)
+    @api.response(201, 'Place successfully created')
+    @api.response(400, 'Invalid input data')
+    @api.response(400, 'Setter validation failure')
     def post(self):
         """Register a new place"""
-        # title = request.form.get('title')
-        # price = request.form.get('price')
-        # address = request.form.get('address')
-        # city = request.form.get('city')
-        # property_type = request.form.get('property_type')  # fixed
-        # description = request.form.get('description')
-        # bedrooms = request.form.get('bedrooms')
-        # beds = request.form.get('beds')
-        # bathrooms = request.form.get('bathrooms')
-        # owner_id = request.form.get('owner_id')
-        # latitude = request.form.get('latitude')
-        # longitude = request.form.get('longitude')
-        # url = request.form.get('url')
-        # deeplink = request.form.get('deeplink')
-        # host_thumbnail = request.form.get('host_thumbnail')
-        # rating = request.form.get('rating')
-        # super_host = request.form.get('super_host', 'false').lower() == 'true'
-        # images = request.files.getlist('images')
+        title = request.form.get('title')
+        price = request.form.get('price')
+        address = request.form.get('address')
+        city = request.form.get('city')
+        property_type = request.form.get('property_type')  # fixed
+        description = request.form.get('description')
+        bedrooms = request.form.get('bedrooms')
+        beds = request.form.get('beds')
+        bathrooms = request.form.get('bathrooms')
+        owner_id = request.form.get('owner_id')
+        latitude = request.form.get('latitude')
+        longitude = request.form.get('longitude')
+        url = request.form.get('url')
+        deeplink = request.form.get('deeplink')
+        host_thumbnail = request.form.get('host_thumbnail')
+        rating = request.form.get('rating')
+        super_host = request.form.get('super_host', 'false').lower() == 'true'
+        images = request.files.getlist('images')
 
         # images = request.form.get('images')
 
-        data = request.get_json()
+        # data = request.get_json()
 
-        print(f"places backend {data}")
-
-        place_data = {
-            'title': data['title'],
-            'price': int(data['price']),
-            'address': data['address'],
-            'city': data['city'],
-            'property_type': data['property_type'],
-            'description': data['description'],
-            'bedrooms': data['bedrooms'],
-            'beds': data['beds'],
-            'bathrooms': data['bathrooms'],
-            'owner_id': data['owner_id'],
-            'latitude': data['latitude'],
-            'longitude': data['longitude'],
-            'url': data['url'],
-            'deeplink': data.get('deeplink', ''),
-            'host_thumbnail': data.get('host_thumbnail'),
-            'rating': data['rating'],
-            'super_host': data.get('super_host', False),
-            'images': data.get('images', []),
-        }
-
-
-        # user = facade.get_user(str(owner_id))
-        # if not user:
-        #     return { 'error': "Invalid input data - user does not exist" }, 400
-        
-        # all_places = facade.get_all_places()
-        # if any(place.title == title for place in all_places):
-        #     return { 'error': "Listing already exists" }, 400
-
-        # img_urls = []
-        # for index, img in enumerate(images):
-        #     public_id = str(city) + str(owner_id) + str(datetime.now())
-        #     print(f"public id {public_id}")
-
-        #     img_url = facade.uploadImage(img, public_id)
-        #     if url:
-        #         img_urls.append(img_url)
-
-        # if not img_urls:
-        #     return { 'error': "Failed to upload images" }, 400
+        # print(f"places backend {data}")
 
         # place_data = {
-        #     'title': title,
-        #     'price': int(price),
-        #     'address': address,
-        #     'city': city,
-        #     'property_type': property_type,
-        #     'description': description,
-        #     'bedrooms': bedrooms,
-        #     'beds': beds,
-        #     'bathrooms': bathrooms,
-        #     'owner_id': owner_id,
-        #     'latitude': latitude,
-        #     'longitude': longitude,
-        #     'url': url,
-        #     'deeplink': deeplink,
-        #     'host_thumbnail': host_thumbnail,
-        #     'rating': rating,
-        #     'super_host': super_host,
-        #     'images': img_urls,
-        #     # 'images': images  
+        #     'title': data['title'],
+        #     'price': int(data['price']),
+        #     'address': data['address'],
+        #     'city': data['city'],
+        #     'property_type': data['property_type'],
+        #     'description': data['description'],
+        #     'bedrooms': data['bedrooms'],
+        #     'beds': data['beds'],
+        #     'bathrooms': data['bathrooms'],
+        #     'owner_id': data['owner_id'],
+        #     'latitude': data['latitude'],
+        #     'longitude': data['longitude'],
+        #     'url': data['url'],
+        #     'deeplink': data.get('deeplink', ''),
+        #     'host_thumbnail': data.get('host_thumbnail'),
+        #     'rating': data['rating'],
+        #     'super_host': data.get('super_host', False),
+        #     'images': data.get('images', []),
         # }
+
+
+        user = facade.get_user(str(owner_id))
+        if not user:
+            return { 'error': "Invalid input data - user does not exist" }, 400
+        
+        all_places = facade.get_all_places()
+        if any(place.title == title for place in all_places):
+            return { 'error': "Listing already exists" }, 400
+
+        img_urls = []
+        for index, img in enumerate(images):
+            public_id = str(city) + str(owner_id) + str(datetime.now())
+            print(f"public id {public_id}")
+
+            img_url = facade.uploadImage(img, public_id)
+            if url:
+                img_urls.append(img_url)
+
+        if not img_urls:
+            return { 'error': "Failed to upload images" }, 400
+
+        place_data = {
+            'title': title,
+            'price': int(price),
+            'address': address,
+            'city': city,
+            'property_type': property_type,
+            'description': description,
+            'bedrooms': bedrooms,
+            'beds': beds,
+            'bathrooms': bathrooms,
+            'owner_id': owner_id,
+            'latitude': latitude,
+            'longitude': longitude,
+            'url': url,
+            'deeplink': deeplink,
+            'host_thumbnail': host_thumbnail,
+            'rating': rating,
+            'super_host': super_host,
+            'images': img_urls,
+            # 'images': images  
+        }
         
         new_place = facade.create_place(place_data)
 
