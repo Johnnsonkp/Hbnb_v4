@@ -197,8 +197,9 @@ function getPlacesData(){
             a.innerText = arr[i]
             // filterContainer[0].appendChild(a);
             // btn.appendChild(a)
+            btn.style.padding = '5px'
             btn.style.fontSize = '14px'
-            btn.style.border = '1px solid silver'
+            btn.style.border = '1px solid #F0F0F0'
             btn.style.backgroundColor = '#F4F4F4'
             btn.style.color = '#333'
             btn.innerText = arr[i]
