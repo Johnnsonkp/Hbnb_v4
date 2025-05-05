@@ -47,48 +47,49 @@ function ButtonSlide({titles, onClick, activeTab, handleSubmit}) {
     if (place.title){
       const formData = new FormData();
 
-      formData.append('title', place.title.slice(0, 90));
-      formData.append('address', place.address);
-      formData.append('description', place.description || "");
-      formData.append('price', place.price);
-      formData.append('bathrooms', place.bathrooms);
-      formData.append('bedrooms', place.bedrooms);
-      formData.append('beds', place.beds);
-      formData.append('city', place.city);
-      formData.append('property_type', place.type);
-      formData.append('latitude', place.latitude || 0);
-      formData.append('longitude', place.longitude || 0);
-      formData.append('owner_id', userState?.user?.id);
-      formData.append('url', place.url || '');
-      formData.append('deeplink', place.deeplink || '');
-      formData.append('host_thumbnail', place.hostThumbnail || testThumbnail);
-      formData.append('rating', place.rating || 0);
-      formData.append('super_host', false);
-      formData.append('images', place.img);
+      // formData.append('title', place.title.slice(0, 90));
+      // formData.append('address', place.address);
+      // formData.append('description', place.description || "");
+      // formData.append('price', place.price);
+      // formData.append('bathrooms', place.bathrooms);
+      // formData.append('bedrooms', place.bedrooms);
+      // formData.append('beds', place.beds);
+      // formData.append('city', place.city);
+      // formData.append('property_type', place.type);
+      // formData.append('latitude', place.latitude || 0);
+      // formData.append('longitude', place.longitude || 0);
+      // formData.append('owner_id', userState?.user?.id);
+      // formData.append('url', place.url || '');
+      // formData.append('deeplink', place.deeplink || '');
+      // formData.append('host_thumbnail', place.hostThumbnail || testThumbnail);
+      // formData.append('rating', place.rating || 0);
+      // formData.append('super_host', false);
+      // formData.append('images', place.img);
 
       const placeParsed = transformPlace(place)
 
       console.log("placeParsed", placeParsed)
 
-      // try {
-      //   console.log("formData", formData)
+      try {
+        console.log("formData", placeParsed)
 
-      //   const response = await fetch(`https://hbnbv4-production.up.railway.app/api/v1/places`, {
-      //     method: 'POST',
-      //     headers: {
-      //       // 'Content-Type': 'application/json',
-      //       // 'Accept': 'application/json',
-      //     },
-      //     mode: 'cors',
-      //     credentials: 'include',
-      //     body: formData, 
-      //   });
+        const response = await fetch(`https://hbnbv4-production.up.railway.app/api/v1/places`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            // 'Accept': 'application/json',
+          },
+          mode: 'cors',
+          credentials: 'include',
+          // body: formData,
+          body: JSON.stringify(placeParsed)
+        });
 
-      //   const data = await response.json();
-      //   console.log("Listing created", data);
-      // } catch (error) {
-      //   console.error('Error posting listing:', error);
-      // }
+        const data = await response.json();
+        console.log("Listing created", data);
+      } catch (error) {
+        console.error('Error posting listing:', error);
+      }
 
     }
   }

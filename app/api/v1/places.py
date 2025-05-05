@@ -82,48 +82,82 @@ class PlaceList(Resource):
 
         # images = request.form.get('images')
 
-        # user = facade.get_user(str(places_data.get('owner_id')))
+        data = request.get_json()
+
+        place_data = {
+            'title': data['title'],
+            'price': int(data['price']),
+            'address': data['address'],
+            'city': data['city'],
+            'property_type': data['type'],
+            'description': data['description'],
+            'bedrooms': data['bedrooms'],
+            'beds': data['beds'],
+            'bathrooms': data['bathrooms'],
+            'owner_id': data['owner_id'],
+            'latitude': data['latitude'],
+            'longitude': data['longitude'],
+            'url': data['url'],
+            'deeplink': data.get('deeplink', ''),
+            'host_thumbnail': data.get('hostThumbnail'),
+            'rating': data['rating'],
+            'super_host': data.get('superHost', False),
+            'images': data.get('img', []),
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
         user = facade.get_user(str(owner_id))
         if not user:
             return { 'error': "Invalid input data - user does not exist" }, 400
         
-        all_places = facade.get_all_places()
-        if any(place.title == title for place in all_places):
-            return { 'error': "Listing already exists" }, 400
+        # all_places = facade.get_all_places()
+        # if any(place.title == title for place in all_places):
+        #     return { 'error': "Listing already exists" }, 400
 
-        img_urls = []
-        for index, img in enumerate(images):
-            public_id = str(city) + str(owner_id) + str(datetime.now())
-            print(f"public id {public_id}")
+        # img_urls = []
+        # for index, img in enumerate(images):
+        #     public_id = str(city) + str(owner_id) + str(datetime.now())
+        #     print(f"public id {public_id}")
 
-            img_url = facade.uploadImage(img, public_id)
-            if url:
-                img_urls.append(img_url)
+        #     img_url = facade.uploadImage(img, public_id)
+        #     if url:
+        #         img_urls.append(img_url)
 
-        if not img_urls:
-            return { 'error': "Failed to upload images" }, 400
+        # if not img_urls:
+        #     return { 'error': "Failed to upload images" }, 400
 
-        place_data = {
-            'title': title,
-            'price': int(price),
-            'address': address,
-            'city': city,
-            'property_type': property_type,
-            'description': description,
-            'bedrooms': bedrooms,
-            'beds': beds,
-            'bathrooms': bathrooms,
-            'owner_id': owner_id,
-            'latitude': latitude,
-            'longitude': longitude,
-            'url': url,
-            'deeplink': deeplink,
-            'host_thumbnail': host_thumbnail,
-            'rating': rating,
-            'super_host': super_host,
-            'images': img_urls,
-            # 'images': images  
-        }
+        # place_data = {
+        #     'title': title,
+        #     'price': int(price),
+        #     'address': address,
+        #     'city': city,
+        #     'property_type': property_type,
+        #     'description': description,
+        #     'bedrooms': bedrooms,
+        #     'beds': beds,
+        #     'bathrooms': bathrooms,
+        #     'owner_id': owner_id,
+        #     'latitude': latitude,
+        #     'longitude': longitude,
+        #     'url': url,
+        #     'deeplink': deeplink,
+        #     'host_thumbnail': host_thumbnail,
+        #     'rating': rating,
+        #     'super_host': super_host,
+        #     'images': img_urls,
+        #     # 'images': images  
+        # }
         
         new_place = facade.create_place(place_data)
 
