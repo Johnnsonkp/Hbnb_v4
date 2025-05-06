@@ -58,8 +58,8 @@ function ListingCard({id, title, url, address, amenities, latitude, longitude,  
       <div className="card-content">
         <div style={{display: 'flex', justifyContent: 'space-between'}}>
           <a href={`/place/${id}`}>
-            {/* <h5 className="card-title">{truncate(title, 26)}</h5> */}
-            <h5 className="card-title">{truncate(title, 40)}</h5>
+            <h5 className="card-title">{truncate(title, 26)}</h5>
+            {/* <h5 className="card-title">{truncate(title, 40)}</h5> */}
           </a>
 
           <div className='' style={{display: 'flex', margin: '0px'}}>
@@ -68,24 +68,16 @@ function ListingCard({id, title, url, address, amenities, latitude, longitude,  
           </div>
         </div>
 
-        {
-          description?.length > 1? 
-          <div style={{display: 'flex', marginTop: '3px', alignItems: 'center', minHeight: '38px'}}>
-            <p className='address'>{truncate(description, 90)}</p>
-          </div>
-           :
-
-          <>
-          <div style={{display: 'flex', marginTop: '3px', alignItems: 'center'}}>
-            <img style={{width: '12px', height: '12px', marginRight: '5px'}} src={dynamicImgSrc('location-pin.png')}/>
-            <p className='address'>{address}</p>
-          </div>
-          <div style={{display: 'flex', marginBottom: '5px', alignItems: 'center'}}>
-            <img style={{width: '12px', height: '12px', marginRight: '5px'}} src={dynamicImgSrc('house-48.png')}/>
-              <p className='address'>{type}</p>
-          </div>
-          </>
-        }
+        <div style={{display: 'flex', marginTop: '3px', alignItems: 'center'}}>
+          <img style={{width: '12px', height: '12px', marginRight: '5px'}} src={dynamicImgSrc('location-pin.png')}/>
+          <p className='address'>{address}</p>
+        </div>
+        
+        <div style={{display: 'flex', marginBottom: '5px', alignItems: 'center'}}>
+          <img style={{width: '12px', height: '12px', marginRight: '5px'}} src={dynamicImgSrc('house-48.png')}/>
+            <p className='address'>{type}</p>
+        </div>
+          
         <h4 className='price-display'>AU${price}</h4>
       </div>
     </div>
