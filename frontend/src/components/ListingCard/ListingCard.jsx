@@ -62,7 +62,7 @@ function ListingCard({id, title, url, address, amenities, latitude, longitude,  
             <h5 className="card-title">{truncate(title, 40)}</h5>
           </a>
 
-          <div className='star-rating' style={{display: 'flex', margin: '0px'}}>
+          <div className='' style={{display: 'flex', margin: '0px'}}>
             <p style={{fontSize: '12px'}}>{rating && rating}</p>
             {rating && rating >= 4 && <img style={{marginLeft:'3px', width: '15px', height: '15px'}} src={dynamicImgSrc('star-24.png')} />}
           </div>
@@ -74,7 +74,7 @@ function ListingCard({id, title, url, address, amenities, latitude, longitude,  
             <p className='address'>{truncate(description, 90)}</p>
           </div>
            :
-        
+
           <>
           <div style={{display: 'flex', marginTop: '3px', alignItems: 'center'}}>
             <img style={{width: '12px', height: '12px', marginRight: '5px'}} src={dynamicImgSrc('location-pin.png')}/>

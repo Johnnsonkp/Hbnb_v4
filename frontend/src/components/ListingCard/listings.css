@@ -116,15 +116,21 @@
   word-break: break-word;
 }
 
-.price-display{
-  font-weight: 500;
-  margin-top: 8px;
+/* .price-display{ */
+  /* font-weight: 500; */
+  /* margin-top: 8px; */
   /* text-decoration: underline; */
-  font-size: 0.83rem;
+  /* font-size: 0.83rem; */
 
   /* position: absolute;
   bottom: 0rem; */
   /* left: 0.8rem; */
+/* } */
+.price-display{
+  font-weight: 500;
+  margin-top: 2px;
+  text-decoration: underline;
+  font-size: 0.85rem;
 }
 .address{
   font-size: 0.75rem;
