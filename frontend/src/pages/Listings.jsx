@@ -124,7 +124,6 @@ function Listings() {
       const maxPriceRange = filterListing.priceRange.max !== null?  
         minPriceRange.filter((listing) => listing.price <= filterListing.priceRange.max) : minPriceRange
 
-      console.log("filterListing !== null)", maxPriceRange)
       setFilteredListings(maxPriceRange)
     }
 
@@ -146,12 +145,16 @@ function Listings() {
   return (
     <div style={{marginTop: '70px'}} className='page-content'>
       <hr style={{backgroundColor: '#666', opacity: '0.3'}}></hr>
-      
-      <CategoriesCarousel Categories={Categories} setFilterListings={setFilterListings}/>
-      
+
+      <CategoriesCarousel 
+        Categories={Categories} 
+        setFilterListings={setFilterListings}
+      />
       {placeState.placeListings? 
-        <ListingContainer listings={filteredListings || placeState.placeListings}/> : 
-        <ListingsSkeleton />}
+        <ListingContainer 
+          listings={filteredListings || placeState.placeListings}
+        /> : <ListingsSkeleton />
+      }
     </div>
   )
 }

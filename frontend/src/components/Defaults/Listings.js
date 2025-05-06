@@ -14,6 +14,7 @@ export default [
     cancelPolicy: "",
     city: "Minneapolis",
     deeplink: "",
+    description: 'A cozy and sunlit private room located in the vibrant center of the city—perfect for solo travelers or couples looking to explore local attractions, cafes, and nightlife just steps away.',
     price: {
       currency: "",
       priceItems: [],

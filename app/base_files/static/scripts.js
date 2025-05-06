@@ -1,6 +1,7 @@
 handleSwitch()
 getPlacesData()
 handleUserAuth()
+handleCtaClick()
 
 window.addEventListener('beforeunload', () => {
   document.body.classList.add('fade-out');
@@ -30,14 +31,11 @@ function handleUserAuth(){
   const userIsAuth = getJWTToken()
 
   if(userIsAuth){
-    let div = document.createElement('div')
-
     getUserInfo()
       .then((data) => {
         if(data.first_name){
           let option_1 = document.querySelector('.option-1')
           let option_2 = document.querySelector('.option-2')
-
           dropDown.classList.add('auth-badge')
           dropDown.innerHTML = `<div class="inner-badge-div">${data.first_name[0]}</div>`
 
@@ -130,7 +128,7 @@ async function loadRadialPoints(res){
 
   for (let i = 0; i < res.length; i++) {
     let div = document.createElement('a');
-    div.href = `${origin}/api/v1/place/${res[i].id}` 
+    div.href = `${origin}/place/${res[i].id}` 
 
     div.classList.add("radial-pin");
     div.innerHTML = `<svg class="" fill="currentColor"
@@ -154,58 +152,38 @@ async function loadRadialPoints(res){
 
 function getPlacesData(){
   const filterContainer = document.getElementsByClassName('sponsor-container');
-  const trustContainer = document.querySelector('sponsor-section')
-  let a = document.createElement('a');
+
   if (filterContainer){
-
-    console.log(`landing page URLs:, ${window.location.origin}/api/v1/places/all`)
-
     fetch(`${window.location.origin}/api/v1/places/all`)
       .then(res => res.json())
       .then(res => {
-        let arr = []
-        let city_arr = []
-        let city_res = res
-
+        let arr = [];
+        let city_arr = [];
         loadRadialPoints(res)
         console.log("res", res)
         res.filter((listing_1) => !arr.includes(listing_1.property_type) && arr.push(listing_1.property_type))
-        city_res.filter((listing_1) => !city_arr.includes(listing_1.city) && city_arr.push(listing_1.city))
+        res.filter((listing_1) => !city_arr.includes(listing_1.city) && city_arr.push(listing_1.city))
 
         for(let i = 0; i < arr.length; i++){
           if(arr[i] !== null){
-            let a = document.createElement('a');
             let btn = document.createElement('button')
+            const params = new URLSearchParams({category: arr[i]});
+            const url = `${window.location.origin}/place?${params.toString()}`;
 
-            const params = new URLSearchParams({
-              category: arr[i],
-            });
-          
-            const url = `${window.location.origin}/listings?${params.toString()}`;
-
-            a.classList.add("sponsor-link")
-            a.style.padding = '5px'
-            a.style.paddingLeft = '10px'
-            a.style.paddingRight = '10px'
-            a.style.borderRadius = '8px'
-            a.style.backgroundColor = '#F4F4F4'
-            a.style.color = '#333'
-            a.style.fontWeight = '600'
-            a.style.fontSize = '14px'
-            a.href = url
-            // a.innerHTML = arr[i]
-            a.innerText = arr[i]
-            // filterContainer[0].appendChild(a);
-            // btn.appendChild(a)
-            btn.style.padding = '5px'
+            btn.style.paddingLeft = '10px'
+            btn.style.paddingRight = '10px'
             btn.style.fontSize = '14px'
-            btn.style.border = '1px solid #F0F0F0'
+            btn.style.fontWeight = '500'
+            btn.style.border = '2px solid #F0F0F0'
             btn.style.backgroundColor = '#F4F4F4'
             btn.style.color = '#333'
             btn.innerText = arr[i]
-            btn.addEventListener('click', () => window.location.href = `${url}`)
+            btn.addEventListener('click', () => {
+              btn.style.border = '2px solid transparent'
+              btn.style.backgroundImage = 'linear-gradient(to top right, #f9a8d4, #93c5fd)'
+              window.location.href = url
+            })
             filterContainer[0].appendChild(btn);
-            // trustContainer.appendChild(a)
           }
         }
         addPropertyTypesToDropDown(arr)
@@ -247,7 +225,6 @@ async function getPicFromUnsplash(city) {
 
 document.getElementsByClassName('search-button')[0].addEventListener("click", function(event){
   event.preventDefault()
-
   console.log("window.location", window.location.origin)
 
   const searchText = document.querySelector('.search-box-inner input[type="text"]').value;
@@ -255,7 +232,6 @@ document.getElementsByClassName('search-button')[0].addEventListener("click", fu
   const dateInputs = document.querySelectorAll('.date-input');
   const checkInDate = dateInputs[0].value;
   const checkOutDate = dateInputs[1].value;
-
   const params = new URLSearchParams({
     search: searchText,
     category: category,
@@ -269,10 +245,20 @@ document.getElementsByClassName('search-button')[0].addEventListener("click", fu
 
 function addPropertyTypesToDropDown(arr){
   const category = document.querySelector('.select-input-field')
-
   for(let i = 0; i < arr.length; i++){
     if(arr[i] !== null){
       category.innerHTML += `<option value="${arr[i]}">${arr[i]}</option>`
     }
   }
+}
+
+function handleCtaClick(){
+  let ctaButton = document.querySelector('.cta-button')
+  let ctaContainer = document.querySelector('.cta-container')
+  
+  ctaButton.addEventListener('click', () => {
+    ctaContainer.innerHTML = `<a href="/listings" class="cta-button">
+      <div class="loader"></div>
+    </a>`
+  })
 }

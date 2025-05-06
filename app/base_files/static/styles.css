@@ -612,7 +612,8 @@ button:hover {
 
 /* === Sponsors === */
 .sponsor-section {
-  padding: 1rem;
+  padding: 1.2rem;
+  padding-bottom: 70px;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -621,7 +622,7 @@ button:hover {
 }
 
 .sponsor-container {
-  /* padding-top: 10px; */
+  padding-top: 10px;
   /* padding-bottom: 40px; */
   max-width: 80rem;
   margin: auto;
@@ -771,7 +772,7 @@ button:hover {
 
 .radial-container {
   display: flex;
-  height: 90vh;
+  height: 86vh;
   max-height: 650px;
   justify-content: center;
   align-items: center;
@@ -780,7 +781,6 @@ button:hover {
 }
 
 .inner-wrapper {
-  /* margin-top: 2.5rem; */
   padding: 0rem 1rem;
   max-width: 100%;
   position: absolute;
@@ -875,7 +875,7 @@ button:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #2563eb; /* blue-600 */
+  background-color: #2563eb;
   padding: 0.75rem 2rem;
   font-size: 1rem;
   font-weight: 500;
@@ -883,6 +883,7 @@ button:hover {
   border-radius: 0.375rem;
   text-decoration: none;
   transition: background-color 0.2s ease;
+  min-width: 230px;
 }
 
 .cta-button:hover {
@@ -890,8 +891,6 @@ button:hover {
 }
 
 .bg-circularLight {
-  /* border-radius: 100%; */
-  /* border: 8px solid red; */
   width: 100vw;
   height: 100vh;
 
@@ -903,6 +902,7 @@ button:hover {
 
   width: 120vw;
   height: 120vh;
+  max-height: 800px;
   left: -10vw;
   top: -10vh;
   transform: translate(-50%, -50%);
@@ -1002,4 +1002,20 @@ button:hover {
 }
 .div{
   margin: 10px;
+}
+
+/* loading circle */
+.loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #3498db; 
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  animation: spin 1s linear infinite;
+  margin: 2px auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
