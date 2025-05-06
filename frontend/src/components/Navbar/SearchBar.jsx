@@ -14,7 +14,8 @@ function SearchBar() {
   const {placeState, placeDispatch} = useContext(PlaceContext)
   const navigate = useNavigate()
 
-  const BASE_URL = import.meta.env.VITE_BASE_URL_BACKEND
+  // const BASE_URL = import.meta.env.VITE_BASE_URL_BACKEND
+  const BASE_URL = window.location.origin
   const API = import.meta.env.VITE_API_PATH
   const places_path = import.meta.env.VITE_PLACES_PATH
 
