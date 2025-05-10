@@ -45,7 +45,8 @@ function SearchBar() {
       // const response = await fetch('http://127.0.0.1:5000/api/v1/places/search', {
       console.log("BASE_URL SEARCH", BASE_URL)
       
-      const response = await fetch(`${BASE_URL}/${API}/${places_path}/search`, {
+      // const response = await fetch(`${BASE_URL}/${API}/${places_path}/search`, {
+      const response = await fetch('http://127.0.0.1:5000/api/v1/places/search', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

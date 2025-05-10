@@ -13,6 +13,7 @@ import ListingDefault from '../components/Defaults/Listings'
 import ListingsSkeleton from '../components/ListingCard/ListingsSkeleton';
 import { PlaceContext } from '../store/context/placeContext';
 import React from 'react'
+import { Suspense } from 'react';
 import { getJWTToken } from '../utilities/localStorage'
 import { shuffleArray } from '../utilities/placeUtilities';
 import { storePlaces } from '../store/actions/placeActions';
@@ -32,10 +33,12 @@ function Listings() {
   });
   // const BASE_URL = import.meta.env.VITE_BASE_URL_BACKEND
   const BASE_URL = window.location.origin
+  const BASE_API_URL = import.meta.env.VITE_BASE_URL_BACKEND
   const API = import.meta.env.VITE_API_PATH
   const places_path = import.meta.env.VITE_PLACES_PATH
-  
-  console.log(`Listings URL:, ${BASE_URL}/${API}/${places_path}`)
+
+  console.log(`URL: ${BASE_API_URL}/${API}/${places_path}`)
+  // console.log(`Listings URL:, ${BASE_URL}/${API}/${places_path}`)
 
   const getListingfromTxt = async () => {
     try {
@@ -60,8 +63,9 @@ function Listings() {
 
   const allPlaces = async () => {
     try {
-      const response = await fetch(`${BASE_URL}/${API}/${places_path}`, {
+      const response = await fetch(`${BASE_URL}/${API}/${places_path}/all`, {
       // const response = await fetch('http://127.0.0.1:5000/api/v1/places/all', {
+      // const response = await fetch(`${BASE_API_URL}/${API}/${places_path}`, {
         method: 'GET',
         headers: {
           'Accept': 'application/json',
@@ -70,6 +74,7 @@ function Listings() {
       });
   
       const data = await response.json();
+      // const data = await response;
       return data;
     } catch (error) {
       console.error('Failed to fetch listings:', error);
@@ -92,7 +97,8 @@ function Listings() {
       allPlaces()
         .then((data) => {
           if(data){
-            console.log("data", data)
+            console.log("useEffect data", data)
+
             let parsedData = parsedPlaces(data)
             const combinedData = parsedData;
             let shuffledData = shuffleArray(combinedData)
@@ -150,11 +156,17 @@ function Listings() {
         Categories={Categories} 
         setFilterListings={setFilterListings}
       />
-      {placeState.placeListings? 
+
+      {placeState.placeListings?
         <ListingContainer 
           listings={filteredListings || placeState.placeListings}
-        /> : <ListingsSkeleton />
-      }
+        /> : <ListingsSkeleton /> }
+
+      {/* <Suspense fallback={<ListingsSkeleton />}>
+        <ListingContainer 
+          listings={filteredListings || placeState.placeListings}
+        />
+      </Suspense> */}
     </div>
   )
 }

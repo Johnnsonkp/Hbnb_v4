@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Welcome to our landing page, where we introduce our product/service">
+    <meta name="description" content="Welcome to Hbnb vacation rental booking website">
     <title>Events local</title>
     <link rel="stylesheet" href="static/styles.css">
     <link rel="icon" href="static/images/icon.png">
@@ -11,6 +11,7 @@
 </head>
   <body>
     <!-- <div class="page-content"> -->
+    <div class="landing-container">
     <img src="static/images/overhead-map.jpg" class="page-content landing-img">
         <!-- Top Nav -->
         <section class="top-nav">
@@ -31,15 +32,15 @@
             </div>
               <div class="search-box">
                 <div class="search-box-inner">
-                  <input type="text" placeholder="Location" class="input-field text" />
+                  <input type="text" placeholder="Search location" class="input-field text" />
                   <select class="select-input-field input-field" value="">
                     <option value="">Property type</option>
                     <option value="house">House</option>
                     <option value="apartment">Apartment</option>
                     <option value="condo">Condo</option>
                   </select>
-                  <input id="datepicker" class="date-input input-field"" type="text" placeholder="Check in">
-                  <input id="datepicker" class="date-input input-field"" type="text" placeholder="Check out">
+                  <input id="datepicker" class="date-input input-field" type="text" placeholder="Check in">
+                  <input id="datepicker" class="date-input input-field" type="text" placeholder="Check out">
                   <!-- </select> -->
                   <button class="search-button">
                     <span className="dropdown-icon"></span>
@@ -58,9 +59,9 @@
                     <div class="group">
                       <button type="button" class="dropdown-button">
                         <!-- <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 16 16"> -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 16 16">
-                          <rect x="0.5" y="0.5" width="15" height="15" rx="20" ry="20" fill="#f3f4f6" stroke="#9ca3af" strokeWidth="1"/>
-                          <path fill="#9ca3af" d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="30" viewBox="0 0 16 16">
+                          <rect x="0.5" y="0.5" width="15" height="15" rx="20" ry="20" fill="#f3f4f6" stroke="#33333378" strokeWidth="1"/>
+                          <path fill="#33333378" d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
                         </svg>
                         <!-- <span class="dropdown-icon"></span> -->
                       </button>
@@ -91,6 +92,7 @@
         
         <div class="radial-container">
           <div class="rotating bg-circularLight">
+          <!-- <div class="bg-circularLight"> -->
             <div class="radial-point"></div>
           </div>
 
@@ -98,7 +100,12 @@
             <div class="blur-background"></div>
             <div class="text-center">
               <h1 class="main-heading">
-                <span class="block"><span class="">Discover unforgettable</span></span>
+                <!-- <span class="block"><span class="">Discover unforgettable</span></span> -->
+                 
+                <span class="block button-text">
+                  <button>Homes</button>
+                  <span class="">Discover Unforgettable Vacation Rentals</span>
+                </span>
                   <span class="gradient-text">vacation rentals</span>
                   <div class="subheading">
                     Across the globe
@@ -117,30 +124,18 @@
                   </p>
 
                   <div class="cta-container">
-                    <a href="/listings" class="cta-button">View all listings 🏡</a>
+                    <a href="/auth/login" class="cta-auth">Sign In</a>
+                    <a href="/listings" class="cta-button">View listings</a>
+                    <!-- <a href="/listings" class="cta-button">View all listings 🏡</a> -->
                   </div>
             </div>
           </div>
         </div>
-
-      <!-- <div class="sponsor-section">
-        <div class="sponsor-container"></div>
-      </div> -->
-
-      <!-- <main class="popular-destination-section">
-        <div class="citi-div">
-          <h1>Discover our popular destinations</h1>
-        </div>
-        <div id="cities"></div>
-      </main> -->
-    <!-- </div> -->
     </img>
+    </div>
 
     <div class="sponsor-section">
       <div class="sponsor-container">
-        <!-- <button>
-          <a class="sponsor-link" href="" >Entire Room 20</a>
-        </button> -->
       </div>
     </div>
 

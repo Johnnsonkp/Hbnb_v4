@@ -49,6 +49,45 @@ place_model = api.model('Place', {
 
 # facade = HBnBFacade()
 
+@api.route('/add_place', methods=['POST'])
+class PlaceList(Resource):
+    def post(self):
+         """Register a new place from place api search"""
+         data = request.get_json()
+
+         print(f"data {data}")
+
+         parsed_data = {
+            'title': data['title'],
+            'price': int(data['price']),
+            'address': data['address'],
+            'city': data['city'],
+            'property_type': data['type'],
+            'description': data['description'],
+            'bedrooms': data['bedrooms'],
+            'beds': data['beds'],
+            'bathrooms': data['bathrooms'],
+            'owner_id': str(data['owner_id']),
+            'latitude': data['latitude'],
+            'longitude': data['longitude'],
+            'url': data['url'],
+            'deeplink': data.get('deeplink', ''),
+            'host_thumbnail': data.get('host_thumbnail'),
+            'rating': data['rating'],
+            'super_host': data.get('super_host', False),
+            'images': data.get('images', []),
+        }
+         
+         user = facade.get_user(str(data['owner_id']))
+         if not user:
+            return { 'error': "Invalid input data - user does not exist" }, 400
+         
+        #  print(f"parsed_data: {parsed_data}")
+         print(json.dumps(parsed_data, indent=4))
+
+         new_place = facade.create_place(parsed_data)
+
+         print(f"New place created {new_place}")
 
 # @api.route('/', methods=['GET', 'POST', 'OPTIONS'])
 @api.route('/', methods=['GET', 'POST', 'OPTIONS'])
@@ -181,7 +220,7 @@ class PlaceList(Resource):
     # @api.response(400, 'Invalid input data')
     # @api.response(200, 'List of places retrieved successfully')
     def get(self):
-        """Retrieve a list of all places"""
+        """Retrieve a list of all places"""        
         all_places = facade.get_all_places()
         output = []
 
@@ -205,12 +244,11 @@ class PlaceList(Resource):
                 "super_host": place.super_host,
                 "rating": place.rating,
                 "property_type": place.property_type,
-                "address": place.address,
+                "address": place.address
             })
 
-        # print(f"places {output}")
-
-        return output, 200
+        if(output):
+          return output, 200
 
 
 @api.route('/search')
@@ -225,63 +263,6 @@ class PlaceList(Resource):
         print(location)
 
         return result
-
-        # def get_airbnb_api_data():
-        #     conn = http.client.HTTPSConnection("airbnb13.p.rapidapi.com")
-
-        #     print(f"env var {app.config['RAPID_API_KEY}']}")
-
-
-        #     headers = {
-        #         'x-rapidapi-key': app.config['RAPID_API_KEY}'],
-        #         'x-rapidapi-host': "airbnb13.p.rapidapi.com"
-        #     }
-
-        #     conn.request("GET", f"/search-location?location=newyork&checkin=2025-09-12&checkout=2025-10-13&adults=1&children=0&infants=0&pets=0&page=1&currency=AUD", headers=headers)
-
-        #     res = conn.getresponse()
-        #     data = res.read()
-        #     list_arr = []
-      
-        #     return json.loads(data.decode("utf-8"))
-
-
-        # location = "NewYork"
-        # created_places = get_airbnb_api_data()
-
-        # if(created_places):
-        #     for index, place in enumerate(created_places):
-        #         if (index > 25):
-        #             return
-
-        #         print(f"created_places {created_places}")
-        #         print(f"place {place}")
-
-        #         place_data = {
-        #             'title': place['title'],
-        #             'price': place['price']['rate'],
-        #             'address': place['address'],
-        #             'city': place['city'],
-        #             'property_type': place['property_type'],
-        #             'description': place['description'],
-        #             'bedrooms': place['bedrooms'],
-        #             'beds': place['beds'],
-        #             'bathrooms': place['bathrooms'],
-        #             'owner_id': place['owner_id'],
-        #             'latitude': place['latitude'],
-        #             'longitude': place['longitude'],
-        #             'url': place['url'],
-        #             'deeplink': place['deeplink'],
-        #             'host_thumbnail': place['host_thumbnail'],
-        #             'rating': place['rating'],
-        #             'super_host': place['super_host'],
-        #             'images': place['images']
-        #         }
-
-        #         print(f"place_data {place_data}")
-                
-                # new_place = facade.create_place(place_data) 
-
 
     @api.response(200, 'List of places retrieved successfully')
     def get(self):
@@ -343,6 +324,7 @@ class PlaceList(Resource):
             })
 
         if output:
+          # print(f"places {output}")
           return output, 200
 
 
@@ -402,8 +384,7 @@ class PlaceResource(Resource):
     @api.response(400, 'Setter validation failure')
     @api.response(404, 'Place not found')
     def put(self, place_id):
-        # curl -X PUT "http://127.0.0.1:5000/api/v1/places/<place_id>" -H "Content-Type: application/json" -H "Authorization: Bearer <token_goes_here>" -d '{"title": "Not So Cozy Apartment","description": "A terrible place to stay","price": 999.99}'
-
+        
         """Update a place's information"""
         place_data = api.payload
         wanted_keys_list = ['title', 'description', 'price']

@@ -123,22 +123,22 @@ async function loadRadialPoints(res){
   let origin = window.location.origin
   
   let radialCircle = document.getElementsByClassName('bg-circularLight');
-  const centerX = window.innerWidth / 2;
-  const centerY = window.innerHeight / 2;
+  const centerX = window.innerWidth / 1.8;
+  const centerY = window.innerHeight / 1;
 
   for (let i = 0; i < res.length; i++) {
     let div = document.createElement('a');
     div.href = `${origin}/place/${res[i].id}` 
 
     div.classList.add("radial-pin");
-    div.innerHTML = `<svg class="" fill="currentColor"
+    div.innerHTML = `<svg class="radial-img" fill="currentColor"
         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
         <path class=""
             d="M5.64 16.36a9 9 0 1 1 12.72 0l-5.65 5.66a1 1 0 0 1-1.42 0l-5.65-5.66zm11.31-1.41a7 7 0 1 0-9.9 0L12 19.9l4.95-4.95zM12 14a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-2a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
     </svg>`
 
     const angle = (i / res.length) * Math.PI * 2;
-    const radius = 150 + Math.random() * 480;
+    const radius = 100 + Math.random() * 440;
     const x = centerX + Math.cos(angle) * radius;
     const y = centerY + Math.sin(angle) * radius;
 
@@ -146,6 +146,7 @@ async function loadRadialPoints(res){
     div.classList.add("reverse-rotating")
     div.style.top = `${y}px`;
     div.style.left = `${x}px`;
+
     radialCircle[0].appendChild(div);
   }
 }
@@ -165,17 +166,21 @@ function getPlacesData(){
         res.filter((listing_1) => !city_arr.includes(listing_1.city) && city_arr.push(listing_1.city))
 
         for(let i = 0; i < arr.length; i++){
-          if(arr[i] !== null){
+          if(arr[i] !== null && i < 16){
             let btn = document.createElement('button')
             const params = new URLSearchParams({category: arr[i]});
             const url = `${window.location.origin}/place?${params.toString()}`;
 
+            btn.style.padding = '5px'
             btn.style.paddingLeft = '10px'
             btn.style.paddingRight = '10px'
-            btn.style.fontSize = '14px'
+            btn.style.fontSize = '13px'
             btn.style.fontWeight = '500'
             btn.style.border = '2px solid #F0F0F0'
             btn.style.backgroundColor = '#F4F4F4'
+            btn.style.border = '1px solid #333'
+            btn.style.border = '1px solid lightGray'
+            btn.style.backgroundColor = '#F2F2F2'
             btn.style.color = '#333'
             btn.innerText = arr[i]
             btn.addEventListener('click', () => {
