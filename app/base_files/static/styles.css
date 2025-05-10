@@ -41,6 +41,7 @@
   max-height: 650px;
   overflow: hidden !important;
   /* border-radius: 20px; */
+  filter: blur(1px);
 }
 
 .landing-img{
@@ -285,9 +286,16 @@ button:hover {
   border-radius: 0.5rem;
   margin: auto;
   flex: 0.4;
-  background-color: rgba(237, 238, 238, 0.2);
+  /* background-color: rgba(237, 238, 238, 0.2); */
   border-radius: 10px;
   backdrop-filter: blur(10px);
+}
+
+.search-box hr{
+  color: lightgray;
+  background-color: rgba(237, 238, 238, 0.5);
+  border: 1px solid rgba(237, 238, 238, 0.5);
+  height: 24px;
 }
 
 .icon-button, .submit-button {
@@ -320,6 +328,7 @@ button:hover {
 .search-box-inner {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1rem;
   flex-wrap: nowrap;
   /* width: 100px; */
@@ -387,8 +396,14 @@ button:hover {
   flex-grow: 1;
   width: 130px;
   background-color: transparent;
+  border: none;
+  cursor: pointer;
+  /* background-color: #f4f4f4; */
 }
 
+.input-field:hover{
+  background-color: #f4f4f4;
+}
 .input-field:focus {
   /* box-shadow: 0 0 0 2px var(--color-red); */
   box-shadow: 0 0 0 2px #2563EB;
@@ -396,7 +411,13 @@ button:hover {
 .input-field.text{
   width: 200px;
 }
-
+.inner-inner{
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(211, 211, 211, 0.4);
+  border-radius: 10px;
+  height: 45px;
+}
 .search-button {
   background-color: var(--color-red);
   color: var(--color-white);
@@ -537,11 +558,6 @@ button:hover {
 }
 
 
-
-
-
-
-
 /* === Circular Banner === */
 .landing-page {
   display: flex;
@@ -552,7 +568,8 @@ button:hover {
 .button-text{
   border: 2px solid #ECEFF1;
   border: 1px solid #33333331;
-  /* background-color: #fff; */
+  border: 1px solid transparent;
+  background-color: #fff;
   background-color: transparent;
   color: #6B7280;
   width: 42%;
@@ -561,7 +578,7 @@ button:hover {
   border-radius: 5px;
   margin: auto;
   font-size: 1rem;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: 500;
   font-family: Segoe UI, Tahoma, sans-serif;
   display: flex !important;
@@ -569,6 +586,7 @@ button:hover {
   align-items: center;
   justify-content: space-around;
   backdrop-filter: blur(10px);
+  box-shadow: 0 1px 7px rgba(0, 0, 0, 0.2);
 }
 .button-text button{
   padding: 2px 5px;
@@ -662,7 +680,7 @@ button:hover {
 }
 
 .sponsor-container {
-  padding-top: 5px;
+  /* padding-top: 5px; */
   /* padding-bottom: 40px; */
   max-width: 74rem;
   margin: auto;
@@ -920,18 +938,23 @@ button:hover {
   margin-top: 1.25rem;
   display: flex;
   justify-content: space-evenly;
-  max-width: 260px;
+  max-width: 310px;
   margin: auto;
+}
+.cta-container svg{
+  width: 30px;
+  transform: scale(0.8);
 }
 
 .cta-auth{
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   background-color: #333;
   padding: 0.75rem 2rem;
   font-size: 1rem;
   padding: 0.5rem 1rem;
+  font-size: 1rem;
   font-size: 0.9rem;
   font-weight: 500;
   color: white;
@@ -939,11 +962,18 @@ button:hover {
   border-radius: 0.375rem;
   text-decoration: none;
   transition: background-color 0.2s ease;
-  padding: 0.5rem 2rem;
+  padding: 0.3rem 2rem;
   background-color: transparent;
   border: 1px solid lightgray;
   border: 1px solid #333;
   border: 1px solid #33333333;
+  /* border: none; */
+  text-decoration: underline;
+  width: 140px;
+  /* border: 1px solid red; */
+  /* background-color: #f4f4f4; */
+  /* color: #2563eb; */
+  margin: 5px;
 }
 
 .cta-button {
@@ -963,7 +993,8 @@ button:hover {
   border-radius: 0.375rem;
   text-decoration: none;
   transition: background-color 0.2s ease;
-  padding: 0.5rem 2rem;
+  padding: 0.3rem 2rem;
+  margin: 5px;
 }
 
 .cta-button:hover {

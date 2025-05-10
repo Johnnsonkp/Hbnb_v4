@@ -138,7 +138,7 @@ async function loadRadialPoints(res){
     </svg>`
 
     const angle = (i / res.length) * Math.PI * 2;
-    const radius = 100 + Math.random() * 440;
+    const radius = 120 + Math.random() * 480;
     const x = centerX + Math.cos(angle) * radius;
     const y = centerY + Math.sin(angle) * radius;
 
@@ -166,10 +166,17 @@ function getPlacesData(){
         res.filter((listing_1) => !city_arr.includes(listing_1.city) && city_arr.push(listing_1.city))
 
         for(let i = 0; i < arr.length; i++){
-          if(arr[i] !== null && i < 16){
+          if(arr[i] !== null && i < 14){
             let btn = document.createElement('button')
             const params = new URLSearchParams({category: arr[i]});
             const url = `${window.location.origin}/place?${params.toString()}`;
+
+            const house_icon = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-home">
+              <path d="M3 9L12 2l9 7" />
+              <path d="M9 22V12h6v10" />
+              <path d="M2 22h20" />
+            </svg>`
 
             btn.style.padding = '5px'
             btn.style.paddingLeft = '10px'
@@ -178,11 +185,17 @@ function getPlacesData(){
             btn.style.fontWeight = '500'
             btn.style.border = '2px solid #F0F0F0'
             btn.style.backgroundColor = '#F4F4F4'
+
             btn.style.border = '1px solid #333'
             btn.style.border = '1px solid lightGray'
             btn.style.backgroundColor = '#F2F2F2'
             btn.style.color = '#333'
-            btn.innerText = arr[i]
+            // btn.innerText = `${house_icon} ${arr[i]}`
+            btn.style.display = 'flex'
+            
+            btn.style.alignItems = 'center'
+            btn.style.justifyContent = 'space-between'
+            btn.innerHTML = `${house_icon} ${arr[i]}`
             btn.addEventListener('click', () => {
               btn.style.border = '2px solid transparent'
               btn.style.backgroundImage = 'linear-gradient(to top right, #f9a8d4, #93c5fd)'
