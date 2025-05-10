@@ -17,9 +17,9 @@ function PlaceDetails() {
   const navigate = useNavigate();
 
   const handleBooking = () => {
-    // if(!userState?.user?.auth || !placeState?.placeDetails){
-    //   navigate('/auth/login')
-    // }
+    if(!userState?.user?.auth || !placeState?.placeDetails){
+      navigate('/auth/login')
+    }
 
     placeBooking(placeState.placeDetails, userDispatch)
     navigate('/trips')

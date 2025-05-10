@@ -7,6 +7,9 @@ import React from 'react'
 function PlaceBodyDetails({handleBooking, bookBtn, customStyles, customType, customPlaceDetails, customAddress}) {
   const {placeState, placeDispatch} = useContext(PlaceContext)
   const [loading, setLoading] = useState(false)
+  const BASE_URL = import.meta.env.VITE_BASE_URL_BACKEND
+  const API = import.meta.env.VITE_API_PATH
+  const places_path = import.meta.env.VITE_PLACES_PATH
   
   const styles = {
     default: {
