@@ -21,18 +21,24 @@ const PlaceImageLayout = () => {
   const customStyles = {
     pageWrapper: {
       padding: "1rem",
-      paddingBottom: '0px'
+      paddingBottom: '0px',
+      marginTop: '0px',
+      paddingTop: '0px'
     },
     container: {
       maxWidth: "1200px",
-      margin: "0 auto",
-      padding: "0.3rem 1rem"
+      // margin: "0 auto",
+      margin: "auto 0",
+      padding: "0.3rem 1rem",
+      // border: '1px solid red',
+      // transform: "scale(0.95)",
+      transform: "scaleY(0.9)",
     },
     title: {
       fontSize: "1.8rem",
-      fontWeight: "bold",
+      fontWeight: 500,
       marginTop: "0.2rem",
-      marginBottom: "0.1rem",
+      marginBottom: "0.5rem",
       textAlign: 'left'
     }
   }
@@ -85,7 +91,8 @@ const PlaceImageLayout = () => {
         
       setPageRefresh(false)
       return
-    }
+    } 
+    
     if (!placeID){
       navigate('/listings')
     }
@@ -93,6 +100,8 @@ const PlaceImageLayout = () => {
 
 
     return (
+      <>
+      <hr style={{ backgroundColor: "rgb(102, 102, 102)", opacity: 0.3}}></hr>
       <Layout customStyles={customStyles} title={placeData? placeData?.title : ''}>
         <LargeImage img={placeData? placeData?.img[0] : null} alt={placeData? placeData?.title : ''}/>
         <SingleImage img={placeData? placeData?.img[1] : null} alt={placeData? placeData?.title : ''}/>
@@ -100,6 +109,7 @@ const PlaceImageLayout = () => {
         <SingleImage img={placeData? placeData?.img[3] : null} alt={placeData? placeData?.title : ''}/>
         <SingleImage img={placeData? placeData?.img[4] : null} alt={placeData? placeData?.title : ''}/>
       </Layout> 
+      </>
     )
 }
 

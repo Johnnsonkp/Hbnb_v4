@@ -28,7 +28,7 @@ function PlaceDetails() {
   return (
     <div className='page-content'>
       <BorderlessBtn 
-        title={""}
+        title={"Back to listings"}
         onClick={() => navigate(-1)}
       />
       <PlaceImageLayout />

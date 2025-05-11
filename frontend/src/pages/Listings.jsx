@@ -162,11 +162,6 @@ function Listings() {
           listings={filteredListings || placeState.placeListings}
         /> : <ListingsSkeleton /> }
 
-      {/* <Suspense fallback={<ListingsSkeleton />}>
-        <ListingContainer 
-          listings={filteredListings || placeState.placeListings}
-        />
-      </Suspense> */}
     </div>
   )
 }

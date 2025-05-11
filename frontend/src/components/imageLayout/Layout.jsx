@@ -7,7 +7,9 @@ function Layout({title, children, customStyles}) {
   const styles = {
     pageWrapper: {
       padding: "2rem",
-      paddingBottom: '0px'
+      paddingBottom: '0px',
+      paddingTop: '0px',
+      marginTop: '0px'
     },
     container: {
       maxWidth: "1200px",

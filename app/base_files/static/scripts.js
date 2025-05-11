@@ -171,13 +171,14 @@ function getPlacesData(){
             const params = new URLSearchParams({category: arr[i]});
             const url = `${window.location.origin}/place?${params.toString()}`;
 
-            const house_icon = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"
+            const house_icon = `<svg class="house-icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"
               stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-home">
               <path d="M3 9L12 2l9 7" />
               <path d="M9 22V12h6v10" />
               <path d="M2 22h20" />
             </svg>`
 
+            btn.classList.add('prop-type')
             btn.style.padding = '5px'
             btn.style.paddingLeft = '10px'
             btn.style.paddingRight = '10px'
@@ -188,17 +189,20 @@ function getPlacesData(){
 
             btn.style.border = '1px solid #333'
             btn.style.border = '1px solid lightGray'
+            btn.style.border = '1px solid transparent'
             btn.style.backgroundColor = '#F2F2F2'
-            btn.style.color = '#333'
-            // btn.innerText = `${house_icon} ${arr[i]}`
+            // btn.style.color = '#333'
+            btn.style.color = '#777'
+
+            // btn.style.backgroundColor = '#444'
+            // btn.style.color = '#fff'
+            btn.style.border = '1px solid rgba(0, 0, 0, 0.06)'
             btn.style.display = 'flex'
             
             btn.style.alignItems = 'center'
             btn.style.justifyContent = 'space-between'
             btn.innerHTML = `${house_icon} ${arr[i]}`
             btn.addEventListener('click', () => {
-              btn.style.border = '2px solid transparent'
-              btn.style.backgroundImage = 'linear-gradient(to top right, #f9a8d4, #93c5fd)'
               window.location.href = url
             })
             filterContainer[0].appendChild(btn);
