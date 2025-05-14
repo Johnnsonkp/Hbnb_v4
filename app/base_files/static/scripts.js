@@ -275,11 +275,18 @@ function addPropertyTypesToDropDown(arr){
 }
 
 function handleCtaClick(){
-  let ctaButton = document.querySelector('.cta-button')
-  let ctaContainer = document.querySelector('.cta-container')
+  let ctaButton = document.querySelector('.cta-btn')
+  // let ctaContainer = document.querySelector('.cta-container')
+  let ctaContainer = document.querySelector('.button-group')
   
+  // ctaButton.addEventListener('click', () => {
+  //   ctaContainer.innerHTML = `<a href="/listings" class="cta-button">
+  //     <div class="loader"></div>
+  //   </a>`
+  // })
+
   ctaButton.addEventListener('click', () => {
-    ctaContainer.innerHTML = `<a href="/listings" class="cta-button">
+    ctaButton.innerHTML = `<a href="/listings" class="ml cta-btn">
       <div class="loader"></div>
     </a>`
   })
