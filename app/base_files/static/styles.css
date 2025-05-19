@@ -1091,6 +1091,8 @@ button:hover {
 
 .house-icon{
   margin-right: 5px;
+  /* color: #F34637; */
+  color: #111;
 }
 
 .prop-type {
@@ -1113,15 +1115,38 @@ button:hover {
   z-index: 9999;
   min-height: 40vh;
   background-color: #fff;
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
 }
+/* #cities{
+  border: 1px solid green;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
 
 .cities-card{
   /* border: 1px solid red; */
   border-radius: 8px;
-  height: 300px;
+  height: 350px;
   width: 250px;
   margin: 10px;
+  position: relative;
+  /* overflow: hidden; */
+  transition: scale;
+  display: flex;
   /* position: absolute; */
+}
+
+.cities-card .inner-card {
+  overflow: hidden;
+  /* height: 200px; */
+  border-radius: 8px;
+  height: 85%;
+  width: 100%;
+  /* border: 2px solid green; */
+  border: 1px solid lightgray;
 }
 
 .cities-card img{
@@ -1129,10 +1154,18 @@ button:hover {
   height: inherit;
   width: inherit;
   border-radius: 8px;
+  position: relative;
 }
-
+.cities-card img:hover{
+  transform: scale(1.05);
+}
 .cities-card .inner{
   position: relative;
+  /* top: 100px; */
+  z-index: 9000;
+  /* border: 1px solid red; */
+  font-weight: bold;
+  text-align: left;
 }
 
 .citi-div{
@@ -1241,15 +1274,20 @@ button:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.25rem;
+  /* gap: 1.25rem; */
+  justify-content: space-around;
+  width: 320px;
   margin-top: 3rem;
+  /* border: 1px solid red; */
+  /* width: 70%; */
+  margin: auto;
 }
 
 @media (min-width: 640px) {
   .button-group {
     flex-direction: row;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 1rem;
     margin-top: 1.5rem;
   }
 }
@@ -1269,6 +1307,7 @@ button:hover {
 
 .btn-primary {
   background-color: #0f172a;
+  /* background-color: #555555; */
   color: #fff;
 }
 

@@ -92,19 +92,22 @@ function getCities(arr){
   let cities_div = document.getElementById("cities")
 
   if(cities_div){
-    cities_div.innerHTML += '<div class="div"></div>'
+    // cities_div.innerHTML += '<div class="div"></div>'
     cities_div.style.display = 'flex'
     cities_div.style.flexWrap = 'wrap'
 
-    for(let i = 0; i < 5; i ++){
+    for(let i = 0; i < 4; i ++){
 
       // getPicFromUnsplash(arr[i])
       // .then((data) => {
       //   let params = new URLSearchParams({search: arr[i]});
       //   let url = `http://127.0.0.1:5000/listings?${params.toString()}`;
+      //   let url = `${window.location.origin}/listings?${params.toString()}`;
 
       //   let img_src = data.results[i].urls.full
-      //   cities_div.innerHTML += `<a href="${url}" class="cities-card"> <img src="${img_src}" class="" lazy></img>  <span class="inner">${arr[i]}</span> </a>`
+      //   cities_div.innerHTML += `<a href="${url}" class="cities-card"> 
+      //   <div class="inner-card"> <img src="${img_src}" class="" lazy></img>  </div>
+      //   <span class="inner">${arr[i]}</span> </a>`
       // })
 
       let params = new URLSearchParams({search: arr[i]});
@@ -112,8 +115,8 @@ function getCities(arr){
 
       let img_src = "https://images.unsplash.com/photo-1743309425925-72a2e4dbb8a4?q=80&w=2875&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 
-      cities_div.innerHTML += `<a href="${url}" class="cities-card"> 
-        <img src="${img_src}" class="" lazy></img>  <span class="inner">${arr[i]}</span> </a>`
+      cities_div.innerHTML += `<a href="${url}" class="cities-card"> <div class="inner-card">
+        <img src="${img_src}" class="" lazy></img>  <span class="inner">${arr[i]}</span> </div></a>`
 
     }
   }
@@ -190,15 +193,13 @@ function getPlacesData(){
             btn.style.border = '1px solid #333'
             btn.style.border = '1px solid lightGray'
             btn.style.border = '1px solid transparent'
-            btn.style.backgroundColor = '#F2F2F2'
+            // btn.style.backgroundColor = '#F2F2F2'
+            btn.style.backgroundColor = '#fff'
             // btn.style.color = '#333'
             btn.style.color = '#777'
-
-            // btn.style.backgroundColor = '#444'
-            // btn.style.color = '#fff'
             btn.style.border = '1px solid rgba(0, 0, 0, 0.06)'
             btn.style.display = 'flex'
-            
+            btn.style.margin = '1px'
             btn.style.alignItems = 'center'
             btn.style.justifyContent = 'space-between'
             btn.innerHTML = `${house_icon} ${arr[i]}`

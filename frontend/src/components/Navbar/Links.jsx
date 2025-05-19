@@ -69,9 +69,14 @@ function Links() {
             </button>
             <div className="dropdown-menu">
               <div className="dropdown-options">
+              {!userDetails?.first_name?
+                  <>
                 <button style={{backgroundColor: '#fff'}}onClick={() => navigate('/auth/sign-up')} className="dropdown-option">Sign up</button>
-                <button style={{backgroundColor: '#fff'}}onClick={() => navigate('/auth/login')} className="dropdown-option">Log In</button>
+                <button style={{backgroundColor: '#fff'}}onClick={() => navigate('/auth/login')} className="dropdown-option">Log In</button> 
+                  </> : ""}
                 <button style={{backgroundColor: '#fff'}}onClick={() => navigate('/dashboard')} className="dropdown-option">Dashboard</button>
+                {userDetails?.first_name && 
+                  <button style={{backgroundColor: '#fff'}}onClick={() => navigate('/hosting/create-place')} className="dropdown-option">Create place</button>}
               </div>
             </div>
           </div>
