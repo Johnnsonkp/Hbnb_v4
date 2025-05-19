@@ -89,52 +89,6 @@ function PlaceBodyDetails({handleBooking, bookBtn, customStyles, customType, cus
     }
   };
 
-  // async function init() {
-  //   await customElements.whenDefined('gmp-map');
-
-  //   const map = document.querySelector('gmp-map');
-  //   const marker = document.querySelector('gmp-advanced-marker');
-  //   const placePicker = document.querySelector('gmpx-place-picker');
-  //   const infowindow = new google.maps.InfoWindow();
-
-  //   map.innerMap.setOptions({
-  //     mapTypeControl: false
-  //   });
-
-  //   placePicker.addEventListener('gmpx-placechange', () => {
-  //     const place = placePicker.value;
-
-  //     if (!place.location) {
-  //       window.alert(
-  //         "No details available for input: '" + place.name + "'"
-  //       );
-  //       infowindow.close();
-  //       marker.position = null;
-  //       return;
-  //     }
-
-  //     if (place.viewport) {
-  //       map.innerMap.fitBounds(place.viewport);
-  //     } else {
-  //       map.center = place.location;
-  //       map.zoom = 17;
-  //     }
-
-  //     marker.position = place.location;
-  //     infowindow.setContent(
-  //       `<strong>${place.displayName}</strong><br>
-  //        <span>${place.formattedAddress}</span>
-  //     `);
-  //     infowindow.open(map.innerMap, marker);
-  //   });
-  // }
-
-  // document.addEventListener('DOMContentLoaded', init);
-
-  // <script type="module" src="https://ajax.googleapis.com/ajax/libs/@googlemaps/extended-component-library/0.6.11/index.min.js">
-  //   </script>
-
-
   return (
     <div style={styles.pageWrapper}>
       <div style={customStyles || styles.default}>
@@ -161,41 +115,9 @@ function PlaceBodyDetails({handleBooking, bookBtn, customStyles, customType, cus
         </div>
       </div>
 
-      {/* <div id="map"></div> */}
-      
-      {/* <div style={{ height: '100vh', width: '100%' }}>
-      <APIProvider apiKey={'AIzaSyBEIQfRWV0wuQCfLqTYjGoA_y9iM5HgoqU'} onLoad={() => console.log('Maps API has loaded.')}>
-        <Map
-          defaultZoom={13}
-          defaultCenter={ { lat: -33.860664, lng: 151.208138 } }
-          onCameraChanged={ (ev) =>
-            console.log('camera changed:', ev.detail.center, 'zoom:', ev.detail.zoom)
-          }
-        >
-        </Map>
-      </APIProvider>
-      </div> */}
-      
-      {/* <div style={{ height: '100vh', width: '100%' }}>
-        <gmpx-api-loader 
-          key="AIzaSyBQyr5LWUaBHtMZbf6O8vinY8BOHBZKTKQ" 
-          solution-channel="GMP_GE_mapsandplacesautocomplete_v2">
-        </gmpx-api-loader>
-        <gmp-map center="40.749933,-73.98633" zoom="13" map-id="DEMO_MAP_ID">
-          <div slot="control-block-start-inline-start" class="place-picker-container">
-            <gmpx-place-picker placeholder="Enter an address"></gmpx-place-picker>
-          </div>
-          <gmp-advanced-marker></gmp-advanced-marker>
-        </gmp-map>
-      </div> */}
-
-        {/* <GoogleMaps /> */}
 
     </div>
   )
 }
 
 export default PlaceBodyDetails
-
-
-// a487cf37a97fa97658e12eb0
